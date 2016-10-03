@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<faq>
+  <f id="q1">
+    <qu>What types of file can I use for the Ajax request?</qu>
+    <an>The file can be any kind of file, like .txt and .xml, or server scripting files like .asp and .php.</an>
+  </f>
+  <f id="q2">
+    <qu>Can I add parameters to filter the returned Ajax data?</qu>
+    <an>Yes, you can add as many as you like, and use them in your Ajax callback function.</an>
+  </f>
+</faq>

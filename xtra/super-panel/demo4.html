@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Demo 4: Populate Super Panel with Dynamic Content</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="src/page.css" rel="stylesheet" />
+    <link href="demos/demo4/super-panel.css" rel="stylesheet" />
+    <script src="demos/demo4/super-panel.js"></script>
+    <style>code {white-space:pre;} h2{margin:1.5em 0;}</style>
+    <script type="text/javascript">
+        //don't copy the below script into your page.
+        if (!document.domain) alert("It seems you are testing locally. The Link 3, 4 and 5 will not work as the Ajax request needs HTTP on a web or localhost server.");
+    </script>
+</head>
+<body>
+    <header>
+        <a class="logo" href="http://www.menucool.com/">Menucool</a>
+        <span id="top-nav">
+            <a href="demo1.html">DEMO 1</a>
+            <a href="demo2.html">DEMO 2</a>
+            <a href="demo3.html">DEMO 3</a>
+            <a href="demo4.html" class="active">DEMO 4</a>
+        </span>
+    </header>
+    <div style="width:660px;margin:0 auto;padding:80px;background:white;">
+        <h1>Demo 4: Populate Super Panel with Dynamic Content</h1>
+        <p>&nbsp;</p>
+        <p>Click the links below to see how the panel can be opened with different contents which are set by the links' <em>data-click</em> or <em>data-ajax</em> attribute.</p>
+        <p>&nbsp;</p>
+        <h2>Populate panel content by functions:</h2>
+        <p>
+            <a data-panel="panel1" href="#" data-click="myFunc, c0" class="panel-button">Link 1</a> &nbsp;
+            <a data-panel="panel1" href="#" data-click="myFunc, c1" class="panel-button">Link 2</a>
+        </p>
+        <div style="border:1px dotted #999;padding:20px;background:#F6F6F6;font-size:small;">
+        <code>&lt;a href="#" <b>data-click="myFunc, c0"</b> class="panel-button"&gt;Link 1&lt;/a&gt;
+
+&lt;a href="#" <b>data-click="myFunc, c1"</b> class="panel-button"&gt;Link 2&lt;/a&gt;</code>
+        </div>
+        <p>&nbsp;</p>
+        <h2>Content retrieved through Ajax:</h2>
+        <p>
+            <a data-panel="panel1" href="#" data-ajax="src/panel-content1.html, ajaxCallback" class="panel-button">Link 3</a> &nbsp;
+            <a data-panel="panel1" href="#" data-ajax="src/faq.xml, ajaxCallback_2, q1" class="panel-button">Link 4</a> &nbsp;
+            <a data-panel="panel1" href="#" data-ajax="src/faq.xml, ajaxCallback_2, q2" class="panel-button">Link 5</a> &nbsp;
+        </p>
+        <div style="border:1px dotted #999;padding:20px;background:#F6F6F6;font-size:small;">
+        <code>&lt;a href="#" <b>data-ajax="src/panel-content1.html, ajaxCallback"</b> class="panel-button"&gt;Link 3&lt;/a&gt;
+
+&lt;a href="#" <b>data-ajax="src/faq.xml, ajaxCallback_2, q1"</b> class="panel-button"&gt;Link 4&lt;/a&gt;
+
+&lt;a href="#" <b>data-ajax="src/faq.xml, ajaxCallback_2, q2"</b> class="panel-button"&gt;Link 5&lt;/a&gt;</code>
+        </div>
+    </div>
+    <div style="display:none;">
+        <div id="c0">
+            <h2>Dynamic Content</h2>
+            <p>The content is retrieved from the page by a callback function.</p>
+            <p>The target link is configured with the following attribute:</p>
+            <code>data-click="myFunc, c0"</code>
+            <p>Then clicking the link will trigger the <em>myFunc</em> function with the passed "c0" parameter.</p>
+            <p>You can include as many parameters as you like.</p>
+        </div>
+        <div id="c1">
+            <h2>Click Callback Function</h2>
+            <p>You will see the following function in the <em>super-panel.js</em> of demo 4.</p>
+            <br />
+            <code>function myFunc(id) {
+var innerDiv = 
+    document.getElementById("panel1-inner");
+
+innerDiv.innerHTML = 
+    document.getElementById(id).innerHTML;
+}</code>
+        </div>
+    </div>
+    <div id="panel1">
+        <span data-panel="panel1" class="panel-button"></span>
+        <div id="panel1-inner"></div>
+    </div>
+</body>
+</html>

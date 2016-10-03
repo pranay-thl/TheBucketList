@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Content retrieved through Ajax</h2>
+    <p>The link is configured with the following attribute:</p>
+    <code>data-ajax="src/panel-content1.html, ajaxCallback"</code>
+    <p>Clicking the link will trigger an Ajax request. When the data is back, the <em>ajaxCallback</em> function will be called.</p>
+                <code>function ajaxCallback(id) {
+    document.getElementById("panel1-inner").innerHTML = data;
+}</code>
+</body>
+</html>

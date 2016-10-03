@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<?php 
+	$handle = fopen("data/counter.txt", "r");
+	if(!$handle){
+	echo "could not open the file" ;
+	}
+	else {
+		$counter = ( int ) fread ($handle,20) ;
+		fclose ($handle) ;
+		$counter++ ;
+		//echo" <div class='div1'><h2 align='center'> Hits : ".  $counter ."</h2></div>" ;
+		$handle =  fopen("data/counter.txt", "w" ) ;
+		fwrite($handle,$counter) ;
+		fclose ($handle) ;
+	}
+?>
+<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="css/page.css" rel="stylesheet" />
+    <link href="css/super-panel.css" rel="stylesheet" />
+    <script src="js/super-panel.js"></script>
+    <style>ul li {padding:10px 0;}</style>
+	<header>
+        <span data-panel="panel1" class="panel-button"></span>
+        <a class="logo" href="index.php">TheBucketList</a>
+		<span id="top-nav">
+		  <a style="border-left:1px solid #ccc; font-size:18px; font-family: 'Courier New', Georgia;"><b>Hits : <?php echo $counter."</b>";?></a>
+          <img margin-right=5px; id="status" src="images/pause.png" alt="Play Button" width="50" height="50"  style="cursor: pointer;" onclick="playSound()" >
+        </span>
+    </header>   
+    <title>TheBucketList</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link href="themes/1/js-image-slider.css" rel="stylesheet" type="text/css" />
+    <script src="themes/1/js-image-slider.js" type="text/javascript"></script>
+    <link href="css/generic.css" rel="stylesheet" type="text/css" />
+	 <link href="css/chatbox.css" rel="stylesheet" type="text/css" />
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	
+	
+	</head>
+<body>
+
+<!-- <audio src="DC/The_Big_Ship.mp3" autoplay>
+<p>If you are reading this, it is because your browser does not support the audio element.     </p>
+</audio> -->
+</br>
+
+<audio id="sound" src="sound/The_Big_Ship.mp3" autoplay loop></audio>
+<script type="text/javascript">
+var audio = document.getElementById("sound");
+	function playSound()
+	{
+		if (audio.paused == false){
+			document.getElementById('status').src='images/play.png';
+			audio.pause();
+			}
+		else{
+			document.getElementById('status').src='images/pause.png';
+			audio.play();
+		}
+	}
+</script>
+
+   <!-- <div class="div1"><h2>The Bucket List</h2></br></br>-->
+   <div>
+		
+			<div class="div2">
+       
+    </div>
+    <div id="sliderFrame">
+        <div id="slider">
+		
+	<!-- 	Append this section to change the images -->
+            <a href="http://www.imdb.com/title/tt1049413/"><img src="images/image-slider-1.jpg" alt="Up(2009)"/></a>
+            <a href="http://www.imdb.com/title/tt2582496/"><img src="images/image-slider-2.gif" alt="Me and Earl and The Dying Girl(2015)"/></a>
+            <a href="http://www.imdb.com/title/tt2370248/"><img src="images/image-slider-3.jpeg" alt="Short Term 12 (2013)"/></a>
+            <a href="http://www.imdb.com/title/tt1659337/"><img src="images/image-slider-4.gif" alt="The Perks of Being a Wallflower(2012)"/></a>
+       
+	   </div>
+        <div id="htmlcaption" style="display: none;">
+            
+        </div>
+    </div>
+	<div class="div2">
+       
+    </div>
+	<!--<div class="div1"><a href="http://172.22.31.147:81/DC"><h2 align="center">Shared-TheHurtLocker</h2></a>
+	<div class="div1"><a href="http://172.22.30.182:81/Shared"><h2 align="center">Shared-Linus</h2></a>-->
+    <div class="div2">
+       
+    </div>
+		
+   </div>
+   
+	
+	<div class="round hollow text-center">
+        <a href="#" id="addClass"><span class="glyphicon glyphicon-comment"></span> Open in chat </a>
+        </div>
+	
+	
+	<div id="panel1">
+		</br></br>
+        <!--<div style="text-align:center;margin:20px 0 10px;">
+            <img src="src/socials.png" />
+        </div>-->
+        <div id="vertical-nav">
+            <a href="DC">TheHurtLocker</a>
+            <!--<a href="http://172.22.30.182:81/Shared">Linus</a>-->
+            <a href="grid.php">Movies</a>
+			<a href="movie_req.php">Movie Request</a>
+			<a href="chat_bot.php">Chat Bot</a>
+			<a href="admin_login.php">Admin</a>
+        </div>
+        <br /><br />
+        <p style="text-align:center;font-size:smaller;font-style:italic;">
+            It was the best of times, It was the worst of times, It was life.<br />
+        </p>
+    </div>
+	
+	<div class="popup-box chat-popup" id="qnimate">
+    		  <div class="popup-head">
+				<div class="popup-head-left pull-left"><img src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg" alt="iamgurdeeposahan"> Gurdeep Osahan</div>
+					  <div class="popup-head-right pull-right">
+						<div class="btn-group">
+    								  <button class="chat-header-button" data-toggle="dropdown" type="button" aria-expanded="false">
+									   <i class="glyphicon glyphicon-cog"></i> </button>
+									  <ul role="menu" class="dropdown-menu pull-right">
+										<li><a href="#">Media</a></li>
+										<li><a href="#">Block</a></li>
+										<li><a href="#">Clear Chat</a></li>
+										<li><a href="#">Email Chat</a></li>
+									  </ul>
+						</div>
+						
+						<button data-widget="remove" id="removeClass" class="chat-header-button pull-right" type="button"><i class="glyphicon glyphicon-off"></i></button>
+                      </div>
+			  </div>
+			<div class="popup-messages">
+    		
+			
+			
+			
+			<div class="direct-chat-messages">
+                    
+					
+					<div class="chat-box-single-line">
+								<abbr class="timestamp">October 8th, 2015</abbr>
+					</div>
+					
+					
+					<!-- Message. Default to the left -->
+                    <div class="direct-chat-msg doted-border">
+                      <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-name pull-left">Osahan</span>
+                      </div>
+                      <!-- /.direct-chat-info -->
+                      <img alt="message user image" src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg" class="direct-chat-img"><!-- /.direct-chat-img -->
+                      <div class="direct-chat-text">
+                        Hey bro, how’s everything going ?
+                      </div>
+					  <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-timestamp pull-right">3.36 PM</span>
+                      </div>
+						<div class="direct-chat-info clearfix">
+						<span class="direct-chat-img-reply-small pull-left">
+							
+						</span>
+						<span class="direct-chat-reply-name">Singh</span>
+						</div>
+                      <!-- /.direct-chat-text -->
+                    </div>
+                    <!-- /.direct-chat-msg -->
+					
+					
+					<div class="chat-box-single-line">
+						<abbr class="timestamp">October 9th, 2015</abbr>
+					</div>
+			
+					
+					
+					<!-- Message. Default to the left -->
+                    <div class="direct-chat-msg doted-border">
+                      <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-name pull-left">Osahan</span>
+                      </div>
+                      <!-- /.direct-chat-info -->
+                      <img alt="iamgurdeeposahan" src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg" class="direct-chat-img"><!-- /.direct-chat-img -->
+                      <div class="direct-chat-text">
+                        Hey bro, how’s everything going ?
+                      </div>
+					  <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-timestamp pull-right">3.36 PM</span>
+                      </div>
+						<div class="direct-chat-info clearfix">
+						  <img alt="iamgurdeeposahan" src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg" class="direct-chat-img big-round">
+						<span class="direct-chat-reply-name">Singh</span>
+						</div>
+                      <!-- /.direct-chat-text -->
+                    </div>
+                    <!-- /.direct-chat-msg -->
+					
+					
+                    
+
+                    
+
+                  </div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</div>
+			<div class="popup-messages-footer">
+			<textarea id="status_message" placeholder="Type a message..." rows="10" cols="40" name="message"></textarea>
+			<div class="btn-footer">
+			<button class="bg_none"><i class="glyphicon glyphicon-film"></i> </button>
+			<button class="bg_none"><i class="glyphicon glyphicon-camera"></i> </button>
+            <button class="bg_none"><i class="glyphicon glyphicon-paperclip"></i> </button>
+			<button class="bg_none pull-right"><i class="glyphicon glyphicon-thumbs-up"></i> </button>
+			</div>
+			</div>
+	  </div>
+	  
+
+<script>	  
+	  $(document).ready(function(){
+		$("#addClass").click(function () {
+		  $('#qnimate').addClass('popup-box-on');
+            });
+          
+            $("#removeClass").click(function () {
+          $('#qnimate').removeClass('popup-box-on');
+            });
+		});
+</script>	
+</body>
+</html>
