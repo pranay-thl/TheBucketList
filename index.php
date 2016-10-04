@@ -1,4 +1,19 @@
 <!DOCTYPE html>
+<?php
+$login_status='false';
+session_start();
+if(isset($_SESSION['login']) && $_SESSION['login']) {
+  /* from Page2.php logic here */
+  $login_status=$_GET['login_status'];
+  $username=$_GET['username'];
+  unset($_SESSION['login']);
+}
+else
+{
+	$login_status="false";
+	$username="";
+}
+?>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
 <!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
@@ -26,7 +41,20 @@
         <span data-panel="panel1" class="panel-button"></span>
         <a class="logo" href="index.php">TheBucketList</a>
 		<span id="top-nav">
+		  <?php
+		  if($login_status=='true')
+		  {
+		  ?>
+			<a style="border-left:1px solid #ccc; font-size:18px; font-family: 'Courier New', Georgia;"><b>Hi <?php echo $username."</b>";?></a>
+			<?php
+		  }
+		  else
+		  {
+		  ?>
 		  <a href="login.php">  <i class="fa fa-sign-in" style="font-size:36px;margin-top:5px;"></i></a>
+		  <?php
+		  }
+		  ?>
           <img margin-right=5px; id="status" src="images/pause.png" alt="Play Button" width="50" height="50"  style="cursor: pointer;" onclick="playSound()" >
         </span>
     </header>  

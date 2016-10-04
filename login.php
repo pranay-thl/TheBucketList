@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<?php
+session_start();
+$_SESSION['login'] = true;
+$m = new MongoClient();
+$db = $m->bucket;
+$collection = $db->user;
+?>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
 <!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
@@ -83,7 +90,29 @@ body { padding-top: 70px; }
                                 <li class="tab active"><a href="#tologin" class="to_register">Login in </a></li>
                                 <li class="tab "><a href="#toregister" class="to_register">Sign up</a></li>
                             </ul>
-                            <form  action="mysuperscript.php" autocomplete="on"> 
+							<?php
+								$u_name='';
+								$password='';
+								$vout='';
+								$login_status="false";
+								if(isset($_POST['login']))
+								{
+									$u_name=$_POST['username'];
+									$password=$_POST['password'];
+									$user = $collection->findOne(array("u_names" => $u_name, "password1" => $password));
+									if($user!=NULL)
+									{
+										$login_status="true";
+										header("Location: index.php?login_status=$login_status&username=$u_name");
+									}
+									else
+									{
+										$login_status="false";
+										$vout='Invalid Credentials';
+									}
+								}
+							?>
+                            <form  action="login.php" autocomplete="on" method="post"> 
                                 <h1>Log in</h1> 
                                 <p> 
                                     <label for="username" class="uname" data-icon="u" > Your email or username </label>
@@ -98,8 +127,11 @@ body { padding-top: 70px; }
 									<label for="loginkeeping">Keep me logged in</label>
 								</p>
                                 <p class="login button"> 
-                                    <input type="submit" value="Login" /> 
+                                    <input type="submit" name="login" value="Login" /> 
 								</p>
+								<label>
+									<p><?=$vout?></p>
+								</label>
                                 <p class="change_link">
 									Not a member yet ?
 									<a href="#toregister" class="to_register">Join us</a>
@@ -112,8 +144,58 @@ body { padding-top: 70px; }
                                 <li class="tab"><a href="#tologin" class="to_register">Login in </a></li>
                                 <li class="tab active"><a href="#toregister" class="to_register">Sign up</a></li>
                             </ul>
-                            <form  action="mysuperscript.php" autocomplete="on"> 
-                                <h1> Sign up </h1> 
+							<?php
+								$u_names='';
+								$f_names='';
+								$l_names='';
+								$password1='';
+								$password2='';
+								$email='';
+								$vouts='';
+								
+								if(isset($_POST['signup']))
+								{
+									$u_names=$_POST['usernamesignup'];
+									$f_names=$_POST['fnamesignup'];
+									$l_names=$_POST['lnamesignup'];
+									$password1=$_POST['passwordsignup'];
+									$password2=$_POST['passwordsignup_confirm'];
+									$email=$_POST['emailsignup'];
+									//echo $u_name." ".$f_names." ".$l_names." ".$password1." ".$email;
+									$user1 = $collection->findOne(array("u_names" => $u_names));
+									if($password1!=$password2)
+									{
+										/*header("Location: index.php");*/
+										$vout="Passwords do not match";
+									}
+									else if($db->collection->findOne(array("u_names" => $u_names))!=NULL)
+									{
+										$vouts="Username Already exists";
+									}
+									else
+									{
+										$document = array( 
+										"u_names" =>$u_names, 
+										"f_names" =>$f_names, 
+										"l_names" =>$l_names, 
+										"email" =>$email, 
+										"password1" =>$password1
+										);
+										$collection->insert($document);
+										$vout='Succesfully Signed up';
+									}
+								}
+							?>
+                            <form  action="login.php" autocomplete="on" method="post"> 
+                                <h1> Sign up </h1>
+								<p> 
+                                    <label for="fnamesignup" class="uname" data-icon="u">Your first name</label>
+                                    <input id="fnamesignup" name="fnamesignup" required="required" type="text" placeholder="mysuperusername690" />
+                                </p>
+								<p> 
+                                    <label for="lnamesignup" class="uname" data-icon="u">Your last name</label>
+                                    <input id="lnamesignup" name="lnamesignup" required="required" type="text" placeholder="mysuperusername690" />
+                                </p>
                                 <p> 
                                     <label for="usernamesignup" class="uname" data-icon="u">Your username</label>
                                     <input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="mysuperusername690" />
@@ -131,8 +213,11 @@ body { padding-top: 70px; }
                                     <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="eg. X8df!90EO"/>
                                 </p>
                                 <p class="signin button"> 
-									<input type="submit" value="Sign up"/> 
+									<input type="submit" name="signup" value="Sign up"/> 
 								</p>
+								<label>
+									<p><?=$vout?></p>
+								</label>
                                 <p class="change_link">  
 									Already a member ?
 									<a href="#tologin" class="to_register"> Go and log in </a>
