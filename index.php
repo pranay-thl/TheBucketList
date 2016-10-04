@@ -15,7 +15,9 @@
     	<link href="css/super-panel.css" rel="stylesheet" />
     	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+		<link href="css/page.css" rel="stylesheet" />
+		<link href="css/super-panel.css" rel="stylesheet" />
+		<script src="js/super-panel.js"></script>
     	<style>
     		ul li {padding:10px 0;}
    		 </style>
@@ -24,17 +26,24 @@
 
 
 
-	<header>
+	<!--<header>
         <span data-panel="panel1" class="panel-button"></span>
     	    <a class="logo" href="index.php">TheBucketList</a>
 		<div id="top-nav" style="padding-top:15px;">
 			<a href="index2.html">  <i class="fa fa-sign-in" style="font-size:36px;margin-top:5px;"></i></a>	
           <img style="margin-right:10px;" id="status" src="images/pause.png" alt="Play Button" width="50" height="50"  style="cursor: pointer;" onclick="playSound()" >
         </div>
-    </header> 
+    </header> -->
 
 
-
+	<header>
+        <span data-panel="panel1" class="panel-button"></span>
+        <a class="logo" href="index.php">TheBucketList</a>
+		<span id="top-nav">
+		  <a href="login.php">  <i class="fa fa-sign-in" style="font-size:36px;margin-top:5px;"></i></a>
+          <img margin-right=5px; id="status" src="images/pause.png" alt="Play Button" width="50" height="50"  style="cursor: pointer;" onclick="playSound()" >
+        </span>
+    </header>  
 
 
 
@@ -110,9 +119,9 @@ var audio = document.getElementById("sound");
    </div>
    
 	
-	<div class="round hollow text-center">
+	<!--<div class="round hollow text-center">
         <a href="#" id="addClass"><span class="glyphicon glyphicon-comment"></span> Open in chat </a>
-        </div>
+    </div>-->
 	
 	
 	<div id="panel1">
@@ -133,7 +142,7 @@ var audio = document.getElementById("sound");
             It was the best of times, It was the worst of times, It was life.<br />
         </p>
     </div>
-	
+	<!--
 	<div class="popup-box chat-popup" id="qnimate">
     		  <div class="popup-head">
 				<div class="popup-head-left pull-left"><img src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg" alt="iamgurdeeposahan"> Gurdeep Osahan</div>
@@ -165,13 +174,12 @@ var audio = document.getElementById("sound");
 					</div>
 					
 					
-					<!-- Message. Default to the left -->
                     <div class="direct-chat-msg doted-border">
                       <div class="direct-chat-info clearfix">
                         <span class="direct-chat-name pull-left">Osahan</span>
                       </div>
-                      <!-- /.direct-chat-info -->
-                      <img alt="message user image" src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg" class="direct-chat-img"><!-- /.direct-chat-img -->
+
+                      <img alt="message user image" src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg" class="direct-chat-img">
                       <div class="direct-chat-text">
                         Hey bro, how’s everything going ?
                       </div>
@@ -184,10 +192,8 @@ var audio = document.getElementById("sound");
 						</span>
 						<span class="direct-chat-reply-name">Singh</span>
 						</div>
-                      <!-- /.direct-chat-text -->
                     </div>
-                    <!-- /.direct-chat-msg -->
-					
+                    
 					
 					<div class="chat-box-single-line">
 						<abbr class="timestamp">October 9th, 2015</abbr>
@@ -195,13 +201,13 @@ var audio = document.getElementById("sound");
 			
 					
 					
-					<!-- Message. Default to the left -->
+				
                     <div class="direct-chat-msg doted-border">
                       <div class="direct-chat-info clearfix">
                         <span class="direct-chat-name pull-left">Osahan</span>
                       </div>
-                      <!-- /.direct-chat-info -->
-                      <img alt="iamgurdeeposahan" src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg" class="direct-chat-img"><!-- /.direct-chat-img -->
+                      
+                      <img alt="iamgurdeeposahan" src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg" class="direct-chat-img">
                       <div class="direct-chat-text">
                         Hey bro, how’s everything going ?
                       </div>
@@ -212,9 +218,9 @@ var audio = document.getElementById("sound");
 						  <img alt="iamgurdeeposahan" src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg" class="direct-chat-img big-round">
 						<span class="direct-chat-reply-name">Singh</span>
 						</div>
-                      <!-- /.direct-chat-text -->
+                      
                     </div>
-                    <!-- /.direct-chat-msg -->
+                   
 					
 					
                     
@@ -254,6 +260,7 @@ var audio = document.getElementById("sound");
           $('#qnimate').removeClass('popup-box-on');
             });
 		});
-</script>	
+</script>
+-->	
 </body>
 </html>
