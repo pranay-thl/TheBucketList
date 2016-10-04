@@ -65,21 +65,12 @@ body { padding-top: 70px; }
     </style>
     <body>
     
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="logo navbar-brand" href="index.php">TheBucketList</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">About Us</a></li>
-        
-      </ul>
-    </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <header>
+        <span style="float:left;"><a href="index.php"><i class="fa fa-arrow-left" style="font-size: 20px;margin-top: 18px;"></i></a></span>
+        <a class="logo" style="margin-left: 0px;" href="index.php">TheBucketList</a>
+    </header>
+	</nav>
         <div class="container">
             <section>				
                 <div id="container_demo" >

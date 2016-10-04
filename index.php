@@ -21,20 +21,6 @@
     	<style>
     		ul li {padding:10px 0;}
    		 </style>
-	
-	
-
-
-
-	<!--<header>
-        <span data-panel="panel1" class="panel-button"></span>
-    	    <a class="logo" href="index.php">TheBucketList</a>
-		<div id="top-nav" style="padding-top:15px;">
-			<a href="index2.html">  <i class="fa fa-sign-in" style="font-size:36px;margin-top:5px;"></i></a>	
-          <img style="margin-right:10px;" id="status" src="images/pause.png" alt="Play Button" width="50" height="50"  style="cursor: pointer;" onclick="playSound()" >
-        </div>
-    </header> -->
-
 
 	<header>
         <span data-panel="panel1" class="panel-button"></span>
