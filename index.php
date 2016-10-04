@@ -1,35 +1,44 @@
 <!DOCTYPE html>
-<html>
-<?php 
-	$handle = fopen("data/counter.txt", "r");
-	if(!$handle){
-	echo "could not open the file" ;
-	}
-	else {
-		$counter = ( int ) fread ($handle,20) ;
-		fclose ($handle) ;
-		$counter++ ;
-		//echo" <div class='div1'><h2 align='center'> Hits : ".  $counter ."</h2></div>" ;
-		$handle =  fopen("data/counter.txt", "w" ) ;
-		fwrite($handle,$counter) ;
-		fclose ($handle) ;
-	}
-?>
-<head>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="UTF-8" />
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <link rel="stylesheet" type="text/css" href="css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="css/style2.css" />
+		<link rel="stylesheet" type="text/css" href="css/animate-custom.css" />
+	    <link href="css/page.css" rel="stylesheet" />
+    	<link href="css/super-panel.css" rel="stylesheet" />
+    	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="css/page.css" rel="stylesheet" />
-    <link href="css/super-panel.css" rel="stylesheet" />
-    <script src="js/super-panel.js"></script>
-    <style>ul li {padding:10px 0;}</style>
+    	<style>
+    		ul li {padding:10px 0;}
+   		 </style>
+	
+	
+
+
+
 	<header>
         <span data-panel="panel1" class="panel-button"></span>
-        <a class="logo" href="index.php">TheBucketList</a>
-		<span id="top-nav">
-		  <a style="border-left:1px solid #ccc; font-size:18px; font-family: 'Courier New', Georgia;"><b>Hits : <?php echo $counter."</b>";?></a>
-          <img margin-right=5px; id="status" src="images/pause.png" alt="Play Button" width="50" height="50"  style="cursor: pointer;" onclick="playSound()" >
-        </span>
-    </header>   
+    	    <a class="logo" href="index.php">TheBucketList</a>
+		<div id="top-nav" style="padding-top:15px;">
+			<a href="index2.html">  <i class="fa fa-sign-in" style="font-size:36px;margin-top:5px;"></i></a>	
+          <img style="margin-right:10px;" id="status" src="images/pause.png" alt="Play Button" width="50" height="50"  style="cursor: pointer;" onclick="playSound()" >
+        </div>
+    </header> 
+
+
+
+
+
+
+
     <title>TheBucketList</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <link href="themes/1/js-image-slider.css" rel="stylesheet" type="text/css" />
