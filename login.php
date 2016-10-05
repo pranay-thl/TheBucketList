@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <?php
 session_start();
-$_SESSION['login'] = true;
 $m = new MongoClient();
 $db = $m->bucket;
 $collection = $db->user;
@@ -99,16 +98,55 @@ body { padding-top: 70px; }
 								{
 									$u_name=$_POST['username'];
 									$password=$_POST['password'];
-									//$user = $collection->findOne(array("u_names" => $u_name, "password1" => $password));
-									if($user!=NULL)
+									$user = $collection->findOne(array("u_name" => $u_name, "password" => $password));
+									if($user)
 									{
-										$login_status="true";
-										header("Location: index.php?login_status=$login_status&username=$u_name");
+										$_SESSION['u_name']=$u_name;
+										header("Location: index.php");
 									}
 									else
 									{
-										$login_status="false";
 										$vout='Invalid Credentials';
+									}
+								}
+							?>
+							<?php
+								$f_name='';
+								$l_name='';
+								$password='';
+								$password2='';
+								$email='';
+								if(isset($_POST['signup']))
+								{
+									$u_name=$_POST['usernamesignup'];
+									$f_name=$_POST['fnamesignup'];
+									$l_name=$_POST['lnamesignup'];
+									$password=$_POST['passwordsignup'];
+									$password2=$_POST['passwordsignup_confirm'];
+									$email=$_POST['emailsignup'];
+									//echo $u_name." ".$f_names." ".$l_names." ".$password1." ".$email;
+									$user1 = $collection->findOne(array("u_name" => $u_name));
+									if($password!=$password2)
+									{
+										/*header("Location: index.php");*/
+										$vout="Passwords do not match";
+									}
+									else if($user1)
+									{
+										$vout="Username Already exists";
+									}
+									else
+									{
+										$document = array( 
+										"u_name" =>$u_name, 
+										"f_name" =>$f_name, 
+										"l_name" =>$l_name, 
+										"email" =>$email, 
+										"password" =>$password
+										);
+										$collection->insert($document);
+										$_SESSION['u_name']=$u_name;
+										header("Location: index.php");
 									}
 								}
 							?>
@@ -144,46 +182,7 @@ body { padding-top: 70px; }
                                 <li class="tab"><a href="#tologin" class="to_register">Login in </a></li>
                                 <li class="tab active"><a href="#toregister" class="to_register">Sign up</a></li>
                             </ul>
-							<?php
-								$f_name='';
-								$l_name='';
-								$password='';
-								$password2='';
-								$email='';
-								if(isset($_POST['signup']))
-								{
-									$u_name=$_POST['usernamesignup'];
-									$f_name=$_POST['fnamesignup'];
-									$l_name=$_POST['lnamesignup'];
-									$password=$_POST['passwordsignup'];
-									$password2=$_POST['passwordsignup_confirm'];
-									$email=$_POST['emailsignup'];
-									//echo $u_name." ".$f_names." ".$l_names." ".$password1." ".$email;
-									$user1 = $collection->findOne(array("u_name" => $u_name));
-									if($password1!=$password2)
-									{
-										/*header("Location: index.php");*/
-										$vout="Passwords do not match";
-									}
-									else if($db->collection->findOne(array("u_names" => $u_names))!=NULL)
-									{
-										$vouts="Username Already exists";
-									}
-									else
-									{
-										$document = array( 
-										"u_names" =>$u_names, 
-										"f_names" =>$f_names, 
-										"l_names" =>$l_names, 
-										"email" =>$email, 
-										"password1" =>$password1
-										);
-										$collection->insert($document);
-										$vout='Succesfully Signed up';
-									}
-								}
-							?>
-                            <form  action="login.php" autocomplete="on" method="post"> 
+                            <form  action="#toregister" autocomplete="on" method="post"> 
                                 <h1> Sign up </h1>
 								<p> 
                                     <label for="fnamesignup" class="uname" data-icon="u">Your first name</label>

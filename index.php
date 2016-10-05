@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <?php
-$login_status='false';
 session_start();
-if(isset($_SESSION['login']) && $_SESSION['login']) {
-  /* from Page2.php logic here */
-  $login_status=$_GET['login_status'];
-  $username=$_GET['username'];
-  unset($_SESSION['login']);
-}
-else
+$username='';
+if(isset($_GET['logout']))
 {
-	$login_status="false";
-	$username="";
+	unset($_SESSION['u_name']);
+}	
+if(isset($_SESSION['u_name']))
+{
+  $username=$_SESSION['u_name'];
 }
 ?>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
@@ -42,10 +39,11 @@ else
         <a class="logo" href="index.php">TheBucketList</a>
 		<span id="top-nav">
 		  <?php
-		  if($login_status=='true')
+		  if($username!='')
 		  {
 		  ?>
 			<a style="border-left:1px solid #ccc; font-size:18px; font-family: 'Courier New', Georgia;"><b>Hi <?php echo $username."</b>";?></a>
+			<a href="index.php?logout=true">  <i class="fa fa-sign-out" style="font-size:36px;margin-top:5px;"></i></a>
 			<?php
 		  }
 		  else
