@@ -108,7 +108,7 @@ body { padding-top: 70px; }
 								{
 									$u_name=$_POST['username'];
 									$password=$_POST['password'];
-									$user = $collection->findOne(array("u_names" => $u_name, "password1" => $password));
+									//$user = $collection->findOne(array("u_names" => $u_name, "password1" => $password));
 									if($user!=NULL)
 									{
 										$login_status="true";
@@ -154,24 +154,21 @@ body { padding-top: 70px; }
                                 <li class="tab active"><a href="#toregister" class="to_register">Sign up</a></li>
                             </ul>
 							<?php
-								$u_names='';
-								$f_names='';
-								$l_names='';
-								$password1='';
+								$f_name='';
+								$l_name='';
+								$password='';
 								$password2='';
 								$email='';
-								$vouts='';
-								
 								if(isset($_POST['signup']))
 								{
-									$u_names=$_POST['usernamesignup'];
-									$f_names=$_POST['fnamesignup'];
-									$l_names=$_POST['lnamesignup'];
-									$password1=$_POST['passwordsignup'];
+									$u_name=$_POST['usernamesignup'];
+									$f_name=$_POST['fnamesignup'];
+									$l_name=$_POST['lnamesignup'];
+									$password=$_POST['passwordsignup'];
 									$password2=$_POST['passwordsignup_confirm'];
 									$email=$_POST['emailsignup'];
 									//echo $u_name." ".$f_names." ".$l_names." ".$password1." ".$email;
-									$user1 = $collection->findOne(array("u_names" => $u_names));
+									$user1 = $collection->findOne(array("u_name" => $u_name));
 									if($password1!=$password2)
 									{
 										/*header("Location: index.php");*/
