@@ -42,7 +42,7 @@ if(isset($_SESSION['u_name']))
 		  if($username!='')
 		  {
 		  ?>
-			<a style="border-left:1px solid #ccc; font-size:18px; font-family: 'Courier New', Georgia;"><b>Hi <?php echo $username."</b>";?></a>
+			<a href="profile.php" style="border-left:1px solid #ccc; font-size:18px; font-family: 'Courier New', Georgia;"><b>Hi <?php echo $username."</b>";?></a>
 			<a href="index.php?logout=true">  <i class="fa fa-sign-out" style="font-size:36px;margin-top:5px;"></i></a>
 			<?php
 		  }
