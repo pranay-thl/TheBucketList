@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<?php
+session_start();
+$m = new MongoClient();
+$db = $m->bucket;
+$collection = $db->user;
+?>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
 <!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
@@ -26,7 +32,7 @@
 <style type="text/css">
 body { padding-bottom: 0px;
      }
-body { padding-top: 70px; }  
+body { padding-top: 70px; background:white }  
 .navigation li a {
     padding: 20px 100px;
     float: left;
@@ -46,11 +52,16 @@ body { padding-top: 70px; }
 	<div class="row">
 		<div class="col-sm-12 col-md-12 user-details">
             <div class="user-image">
-                <img src="http://www.gravatar.com/avatar/2ab7b2009d27ec37bffee791819a090c?s=100&d=mm&r=g" alt="Karan Singh Sisodia" title="Karan Singh Sisodia" class="img-circle">
+                <img src="images/User-Default.jpg" alt="Karan Singh Sisodia" title="Karan Singh Sisodia" class="img-circle">
             </div>
             <div class="user-info-block">
                 <div class="user-heading">
-                    <h3>Karan Singh Sisodia</h3>
+					<?php
+						$name='';
+						$user=$collection->findOne(array("u_name" => $_SESSION['u_name']));
+						$name=($user['f_name'])." ".($user['l_name']);
+					?>
+                    <h3><?=$name?></h3>
                     <span class="help-block">Chandigarh, IN</span>
                 </div>
                 <ul class="navigation">
@@ -75,7 +86,7 @@ body { padding-top: 70px; }
                     <li>
                         <a data-toggle="tab" href="#events">
                             <!-- <span class="glyphicon glyphicon-calendar"></span> -->
-                            <span>Uploads</span>
+                            <span>Upload</span>
                         </a>
                     </li>
                     <li>
@@ -98,11 +109,11 @@ body { padding-top: 70px; }
    
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title">Sheena Kristin A.Eschor</h3>
+              <h3 class="panel-title"><?=$name?></h3>
             </div>
             <div class="panel-body">
               <div class="row">
-                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> </div>
+                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="images/head-33638_640.png" class="img-circle img-responsive"> </div>
                 <div class=" col-md-9 col-lg-9 "> 
                   <table class="table table-user-information">
                     <tbody>
@@ -130,7 +141,7 @@ body { padding-top: 70px; }
                       </tr>
                       <tr>
                         <td>Email</td>
-                        <td><a href="mailto:info@support.com">info@support.com</a></td>
+                        <td><a href="mailto:.<?=$user['email']?>"><?=$user['email']?></a></td>
                       </tr>
                         <td>Phone Number</td>
                         <td>123-4567-890(Landline)<br><br>555-4567-890(Mobile)
@@ -144,7 +155,7 @@ body { padding-top: 70px; }
               </div>
             </div>
                  <div class="panel-footer" style="padding: 40px 15px;">
-                            <a href="edit.html" data-original-title="Edit" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a href="#" data-original-title="Edit" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
                     </div>
             
           </div>
