@@ -19,17 +19,17 @@
 	<?php
 			$m = new MongoClient();
 			$db = $m->bucket;
-			$collection = $db->movies;
-			$m_name='';
-			$m_link='';
-			$m_image='';
+			$collection = $db->videos;
+			$v_name='';
+			$v_link='';
+			$v_image='';
 			$vout='';
 			if(isset($_POST['submit']))
 			{
-				$m_name=$_POST['m_name'];
-				$m_link=$_POST['m_link'];
-				$m_image=$_POST['m_image'];
-				if($m_name==''||$m_link==''||$m_image=='')
+				$v_name=$_POST['v_name'];
+				$v_link=$_POST['v_link'];
+				$v_image=$_POST['v_image'];
+				if($v_name==''||$v_link==''||$v_image=='')
 				{
 					$vout='Invalid Credentials';
 					//echo 'hi';
@@ -38,9 +38,9 @@
 				{
 					//echo $m_name.' '.$m_link.' '.$m_image;
 					$document = array( 
-					"m_name" =>$m_name, 
-					"m_link" =>$m_link, 
-					"m_image" =>$m_image
+					"v_name" =>$v_name, 
+					"v_link" =>$v_link, 
+					"v_image" =>$v_image
 					);
 					$collection->insert($document);
 					$vout='Succesfully inserted into database';
@@ -49,13 +49,13 @@
 		?>
     <div style="width:600px;margin:0 auto;padding:80px;background:white;">
         <form action="admin.php" method="post">
-				<p>Movie Name: <input type="text" name="m_name"></p>
+				<p>Video Name: <input type="text" name="v_name"></p>
 				</br>
 				</br>
-				<p>Movie Link: <input type="text" name="m_link"></p>
+				<p>Video Link: <input type="text" name="v_link"></p>
 				</br>
 				</br>
-				<p>Movie Image: <input type="text" name="m_image"></p>
+				<p>Video Image: <input type="text" name="v_image"></p>
 				</br>
 				</br>
 		<input type="submit" name="submit" value="submit">
@@ -70,17 +70,16 @@
             <img src="src/socials.png" />
         </div>-->
         <div id="vertical-nav">
-            <a href="DC">TheHurtLocker</a>
-            <!--<a href="http://172.22.30.182:81/Shared">Linus</a>-->
-            <a href="grid.php">Movies</a>
-			<a href="movie_req.php">Movie Request</a>
-			<a href="chat_bot.php">Chat Bot</a>
-			<a href="admin_login.php">Admin</a>
+            <a href="video.php">Videos</a>
+			<a href="album.php">Albums</a>
         </div>
         <br /><br />
         <p style="text-align:center;font-size:smaller;font-style:italic;">
             It was the best of times, It was the worst of times, It was life.<br />
         </p>
     </div>
+	<?php
+	$m->close();
+	?>
 </body>
 </html>

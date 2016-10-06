@@ -109,7 +109,7 @@ var audio = document.getElementById("sound");
         <div id="slider">
 		
 	<!-- 	Append this section to change the images -->
-            <a href="http://www.imdb.com/title/tt1049413/"><img src="images/image-slider-1.jpg" alt="Up(2009)"/></a>
+            <a href="video-page.php?v_link=data/videos/Watchtower.of.Turkey/Watchtower.of.Turkey.mp4&v_name=Watchtower of Turkey&v_image=data/videos/Watchtower.of.Turkey/Watchtower.of.Turkey.jpg"><img src="data/videos/Watchtower.of.Turkey/Watchtower.of.Turkey3.jpg" alt="Watchtower of Turkey"/></a>
             <a href="http://www.imdb.com/title/tt2582496/"><img src="images/image-slider-2.gif" alt="Me and Earl and The Dying Girl(2015)"/></a>
             <a href="http://www.imdb.com/title/tt2370248/"><img src="images/image-slider-3.jpeg" alt="Short Term 12 (2013)"/></a>
             <a href="http://www.imdb.com/title/tt1659337/"><img src="images/image-slider-4.gif" alt="The Perks of Being a Wallflower(2012)"/></a>
@@ -142,12 +142,8 @@ var audio = document.getElementById("sound");
             <img src="src/socials.png" />
         </div>-->
         <div id="vertical-nav">
-            <a href="DC">TheHurtLocker</a>
-            <!--<a href="http://172.22.30.182:81/Shared">Linus</a>-->
-            <a href="grid.php">Movies</a>
-			<a href="movie_req.php">Movie Request</a>
-			<a href="chat_bot.php">Chat Bot</a>
-			<a href="admin_login.php">Admin</a>
+            <a href="video.php">Videos</a>
+			<a href="album.php">Albums</a>
         </div>
         <br /><br />
         <p style="text-align:center;font-size:smaller;font-style:italic;">
