@@ -106,10 +106,11 @@ var audio = document.getElementById("sound");
        
     </div>
     <div id="sliderFrame">
+	<p style="text-align:center; font-size:28px; font-family: 'Courier New', Georgia;">Trending Videos</p>
         <div id="slider">
 		
 	<!-- 	Append this section to change the images -->
-            <a href="video-page.php?v_link=data/videos/Watchtower.of.Turkey/Watchtower.of.Turkey.mp4&v_name=Watchtower of Turkey&v_image=data/videos/Watchtower.of.Turkey/Watchtower.of.Turkey.jpg"><img src="data/videos/Watchtower.of.Turkey/Watchtower.of.Turkey3.jpg" alt="Watchtower of Turkey"/></a>
+            <a href="video-page.php?v_link=data/videos/Watchtower of Turkey.mp4&v_name=Watchtower of Turkey&v_image=data/videos/Watchtower.of.Turkey.jpg"><img src="data/videos/Watchtower.of.Turkey3.jpg" alt="Watchtower of Turkey"/></a>
             <a href="http://www.imdb.com/title/tt2582496/"><img src="images/image-slider-2.gif" alt="Me and Earl and The Dying Girl(2015)"/></a>
             <a href="http://www.imdb.com/title/tt2370248/"><img src="images/image-slider-3.jpeg" alt="Short Term 12 (2013)"/></a>
             <a href="http://www.imdb.com/title/tt1659337/"><img src="images/image-slider-4.gif" alt="The Perks of Being a Wallflower(2012)"/></a>

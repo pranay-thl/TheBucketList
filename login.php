@@ -153,7 +153,7 @@ body { padding-top: 70px; }
                             <form  action="login.php" autocomplete="on" method="post"> 
                                 <h1>Log in</h1> 
                                 <p> 
-                                    <label for="username" class="uname" data-icon="u" > Your email or username </label>
+                                    <label for="username" class="uname" data-icon="u" > Your username </label>
                                     <input id="username" name="username" required="required" type="text" placeholder="myusername or mymail@mail.com"/>
                                 </p>
                                 <p> 

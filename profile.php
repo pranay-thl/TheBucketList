@@ -4,6 +4,8 @@ session_start();
 $m = new MongoClient();
 $db = $m->bucket;
 $collection = $db->user;
+$collection2 =$db->videos;
+include('upload.php');
 ?>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
@@ -166,13 +168,57 @@ body { padding-top: 70px; background:white }
 
                         </div>
                         <div id="settings" class="tab-pane">
-                            <h4>Settings</h4>
+                            <h4>Uploaded Videos</h4>
+							<?php
+							$cursor=$collection2->find(array("u_name" => $_SESSION['u_name']));
+							foreach ($cursor as $document)
+							{
+								?>
+								<a href="video-page.php?v_link=<?=$document['v_link']?>&v_name=<?=$document['v_name']?>&v_image=<?=$document['v_image']?>"><p style="text-align:center; font-size:18px; font-family: 'Courier New', Georgia;"><?=$document['v_name']?></p></a>
+								<?php
+							}
+							?>
                         </div>
                         <div id="email" class="tab-pane">
                             <h4>Send Message</h4>
                         </div>
                         <div id="events" class="tab-pane">
                             <h4>Events</h4>
+							<center>
+							<?php
+							if($msg!='')
+							{
+							?>
+									<p><?=$msg?></p>
+							<?php
+							}
+							?>
+							<script type="text/javascript">
+								google_ad_client = "ca-pub-6338063578832547";
+								google_ad_slot = "5073283314";
+								google_ad_width = 600;
+								google_ad_height = 90;
+							</script>
+							<script type="text/javascript"
+							src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+							</script>
+							</center>
+							<hr/>
+							<form action="#events" method="post" enctype="multipart/form-data">
+							<table bgcolor="#F9F9F9" border="0" style="padding:10px" align="center">
+							<tr>
+								<td colspan="2"></td>
+							</tr>
+							<tr>
+								  <td height="50">Choose Video</td>
+								  <td> <input type="file" name="fileToUpload"/> </td>
+							</tr>
+							<tr>
+								 <td height="50" colspan="2" align="center">
+								 <input type="submit" value="Upload Video" name="Upload"/>
+							</tr>
+							</table>
+							</form>
                         </div>
                     </div>
                 </div>
