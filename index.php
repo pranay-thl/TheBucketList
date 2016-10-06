@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <?php
 session_start();
+$m = new MongoClient();
+$db = $m->bucket;
+$collection =$db->videos;
 $username='';
 if(isset($_GET['logout']))
 {
@@ -11,6 +14,16 @@ if(isset($_SESSION['u_name']))
   $username=$_SESSION['u_name'];
 }
 ?>
+<?php
+		if(isset($_POST['button']))
+		{
+			$cursor=$collection->findOne(array("v_name"=>$_POST['search']));
+			if($cursor)
+			{
+				header("Location: video-page.php?v_link=".$cursor['v_link']."&v_name=".$cursor['v_name']."&v_image=".$cursor['v_image']);
+			}
+		}
+	?>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
 <!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
@@ -34,6 +47,43 @@ if(isset($_SESSION['u_name']))
     		ul li {padding:10px 0;}
    		 </style>
 
+		 <style>
+					#custom-search-input{
+				padding: 3px;
+				border: solid 1px #E4E4E4;
+				border-radius: 6px;
+				background-color: #fff;
+			}
+
+			#custom-search-input input{
+				border: 0;
+				box-shadow: none;
+			}
+
+			#custom-search-input button{
+				margin: 2px 0 0 0;
+				background: none;
+				box-shadow: none;
+				border: 0;
+				color: #666666;
+				padding: 0 8px 0 10px;
+				border-left: solid 1px #ccc;
+			}
+
+			#custom-search-input button:hover{
+				border: 0;
+				box-shadow: none;
+				border-left: solid 1px #ccc;
+			}
+
+			#custom-search-input .glyphicon-search{
+				font-size: 23px;
+			}
+					
+						ul li {padding:10px 0;}
+   		 </style>
+		 
+		 
 	<header>
         <span data-panel="panel1" class="panel-button"></span>
         <a class="logo" href="index.php">TheBucketList</a>
@@ -98,8 +148,34 @@ var audio = document.getElementById("sound");
 		}
 	}
 </script>
-
    <!-- <div class="div1"><h2>The Bucket List</h2></br></br>-->
+   
+   <div class="div2" style="margin-top:5px;margin-bottom:20px;width: 600px;">
+			<div class="container">
+			<form action="index.php" method="post" >
+	<div class="row">
+        <div class="col-md-6">
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+				
+                    <input type="text" name="search" class="form-control input-lg" placeholder="Search Here :)" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" name="button" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+					
+                </div>
+            </div>
+			</div>
+		</div>
+		
+	</div>
+       
+    </form>
+			</div>
+   
+   
    <div>
 		
 			<div class="div2">
