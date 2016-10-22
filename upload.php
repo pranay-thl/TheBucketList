@@ -2,7 +2,7 @@
 $msg='';
 if(isset($_POST['Upload'])){
     // =============  File Upload Code d  ===========================================
-    $target_dir = "data/videos/";
+    $target_dir = "/var/www/html/data/videos/";
 
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
@@ -27,10 +27,7 @@ if(isset($_POST['Upload'])){
     }
 
     // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) {
-        $msg= "Sorry, your file was not uploaded.";
-    // if everything is ok, try to upload file
-    } else {
+     if($uploadOk!=0) {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             $msg= "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 			$user=$_SESSION['u_name'];
