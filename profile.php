@@ -256,7 +256,7 @@ body { padding-top: 70px; background:white }
 									<p><?=$msg?></p>
 							<?php
 							}
-							if($_SESSION['u_name']=='THL')
+							if($_SESSION['u_name']=='THL' || $_SESSION['u_name']=='rahul_2608')
 							{
 							?>
 							</center>
@@ -270,7 +270,7 @@ body { padding-top: 70px; background:white }
 							<select id="select_album" name="album_select_name">
 							<option value="null">Empty</option>
 							<?php
-							$cur=$collection3->find();
+							$cur=$collection3->find(array("u_name"=>$_SESSION["u_name"]));
 							foreach($cur as $doc)
 							{
 							?>	
