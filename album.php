@@ -3,21 +3,18 @@
 	<?php
 			$m = new MongoClient();
 			$db = $m->bucket;
-			$collection = $db->videos;
-			$v_name='';
-			$v_link='';
-			$v_image='';
-			$arr_v_name=array();
-			$arr_v_link=array();
-			$arr_v_image=array();
+			$collection = $db->albums;
+			$u_name='';
+			$album_name='';
+			$arr_u_name=array();
+			$arr_album_name=array();
 			$doc_size;
 			$cursor = $collection->find();
 			foreach ($cursor as $document) {
-				 array_push($arr_v_name,$document["v_name"]);
-				 array_push($arr_v_link,$document["v_link"]);
-				 array_push($arr_v_image,$document["v_image"]);
+				 array_push($arr_u_name,$document["u_name"]);
+				 array_push($arr_album_name,$document["album_name"]);
 			}
-			$doc_size=count($arr_v_name);
+			$doc_size=count($arr_u_name);
 			
 	?>
 	<link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -29,10 +26,10 @@
 	{
 	?>
     <li>
-        <a class="rig-cell" href="video-page.php?v_link=<?=$arr_v_link[$i]?>&v_name=<?=$arr_v_name[$i]?>">
-            <img class="rig-img" src="<?=$arr_v_image[$i]?>">
+        <a class="rig-cell" href="album-page.php?album_name=<?=$arr_album_name[$i]?>">
+            <img class="rig-img" src="images/video_album_image.png">
             <span class="rig-overlay"></span>
-            <span class="rig-text"><?=$arr_v_name[$i]?></span>
+            <span class="rig-text"><?=$arr_album_name[$i]?></span>
         </a>
     </li>
 	<?php

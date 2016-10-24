@@ -32,7 +32,6 @@
 			</video>
 			<script src="js/video.js"></script>
 		</div>
-		<br/><br/>
 		<div id="disqus_thread"></div>
 			<script>
 

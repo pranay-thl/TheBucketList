@@ -10,26 +10,25 @@
 			$arr_v_name=array();
 			$arr_v_link=array();
 			$arr_v_image=array();
-			$arr_private=array();
 			$doc_size;
 			$cursor = $collection->find();
 			foreach ($cursor as $document) {
+				if($_GET['album_name']==$document['album_name'])
+				{
 				 array_push($arr_v_name,$document["v_name"]);
 				 array_push($arr_v_link,$document["v_link"]);
 				 array_push($arr_v_image,$document["v_image"]);
-				 array_push($arr_private,$document["is_private"]);
+				}
 			}
 			$doc_size=count($arr_v_name);
 			
 	?>
 	<link href="css/style.css" rel="stylesheet" type="text/css" />
-	<div class="div1"><head>Videos</head></div>
+	<div class="div1"><head><?=$_GET['album_name']?></head></div>
 	<body>
 		<ul id="rig">
 	<?php
 	for($i=0;$i<$doc_size;$i++)
-	{
-	if($arr_private[$i]=="public")
 	{
 	?>
     <li>
@@ -40,7 +39,6 @@
         </a>
     </li>
 	<?php
-	}
 	}
 	$m->close();
 	?>
