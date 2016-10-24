@@ -341,7 +341,7 @@ var audio = document.getElementById("sound");
 		});
 </script>
 -->	
-<!-- '<li style="padding-top:10px;"><strong><i></i></strong></li>' -->
+
 <script type="text/javascript">        
 function show(){
     $('.browse').css('display','block');
@@ -352,7 +352,7 @@ function show(){
     		'search_handler.php',
     		{'name':name},
     		function (res){
-    				//alert(res);
+    
     	  $('.browse').html(res);
      	});
   }
@@ -362,11 +362,8 @@ function show(){
   	});
 
   $('#searchForm').submit(function(event){
-        /*itemv=$('#search').val();*/
-        	//var redirect ='<?php echo $res1; ?>';// $( "li" ).first().attr('href');
-            //window.open(redirect);
-            //alert(redirect);
-            return false;
+    	return false;
+        event.preventDefault();
 	});
 </script>
 </body>

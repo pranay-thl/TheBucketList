@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <?php
 session_start();
@@ -18,10 +19,7 @@ include('upload.php');
         <meta charset="UTF-8" />
         <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <meta name="description" content="Login and Registration Form with HTML5 and CSS3" />
-        <meta name="keywords" content="html5, css3, form, switch, animation, :target, pseudo-class" />
-        <meta name="author" content="Codrops" />
-        <link rel="shortcut icon" href="../favicon.ico"> 
+        <link rel="shortcut icon" href="../favicon.ico">
         <link rel="stylesheet" type="text/css" href="css/demo.css" />
         <link rel="stylesheet" type="text/css" href="css/style2.css" />
         <link rel="stylesheet" type="text/css" href="css/animate-custom.css" />
@@ -31,8 +29,19 @@ include('upload.php');
         <link href="css/super-panel.css" rel="stylesheet" />
         <link href="css/profile1.css" rel="stylesheet" />
         <link href="css/profile2.css" rel="stylesheet" />
-    </head>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" type="text/css" href='css/plugins/dataTables/dataTables.bootstrap.css'>
+        <link rel="stylesheet" type="text/css" href='css/plugins/dataTables/dataTables.responsive.css'>
+        <link rel="stylesheet" type="text/css" href='css/plugins/dataTables/dataTables.tableTools.min.css'>
+        <link rel="stylesheet" type="text/css" href='css/plugins/dataTables/colReorder.dataTables.min.css'>
+        <link rel="stylesheet" type="text/css" href='css/plugins/dataTables/buttons.dataTables.min.css'>
 <style type="text/css">
+table {
+  border-spacing: 20px 10px;
+}
+
+
+
 body { padding-bottom: 0px;
      }
 body { padding-top: 70px; background:white }  
@@ -41,6 +50,7 @@ body { padding-top: 70px; background:white }
     float: left;
 }   
 </style>
+    </head>
     <body>
     <nav class="navbar navbar-default navbar-fixed-top">
     <header>
@@ -90,6 +100,12 @@ body { padding-top: 70px; background:white }
                         <a data-toggle="tab" href="#events">
                             <!-- <span class="glyphicon glyphicon-calendar"></span> -->
                             <span>Upload</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#requests">
+                            <!-- <span class="glyphicon glyphicon-envelope"></span> -->
+                            <span>Pull Request</span>
                         </a>
                     </li>
                 </ul>
@@ -246,6 +262,55 @@ body { padding-top: 70px; background:white }
 							}
 							?>
                         </div>
+                        <div id="requests" class="tab-pane">
+                        <div class="wrapper wrapper-content animated fadeInRight">
+                            <div class="row">
+                              <div class="tabs-container">
+                                  <div class="tab-content">
+                                  <div id="tab-1" class="tab-pane active">
+                                      <div class="panel-body">
+                                        <div class="col-lg-12">
+                                            <div class="ibox float-e-margins">
+                                                <div class="ibox-content">
+
+                                                    <table class="table table-striped table-bordered table-hover" id="footable1">
+                                                        <thead>
+                                                        <tr>
+                                                            <th ><i>User Name</i></th>
+                                                            <th >Video Name</th>  
+                                                            <th >Album Name</th>             
+                                                            <th ></th>
+                                                            <th ></th>                                                                                                
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>      
+                                                    <?php
+                                                      /*foreach($string as $string) {
+                                                        foreach($string['providerBasePackages'] as $value) {
+                                                      */      echo '<tr class="">';
+                                                            echo '<td >shubham</td>';
+                                                            echo '<td >video1</td>';
+                                                            echo '<td >Album1</td>';
+                                                            echo '<td ><button class="btn btn-success">Accept</button></td>';
+                                                            echo '<td ><button class="btn btn-danger">Decline</button></td>';
+                                                            echo ' </tr>';
+                                                        //}
+                                                      //}
+                                                      
+                                                    ?> </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                  </div>
+                                  </div>
+                              </div>            
+                            </div>
+                          </div>                            
+                        </div> 
+
+
                         <div id="events" class="tab-pane">
                             <h4>Upload</h4>
 							<center>
@@ -256,7 +321,7 @@ body { padding-top: 70px; background:white }
 									<p><?=$msg?></p>
 							<?php
 							}
-							if($_SESSION['u_name']=='THL' || $_SESSION['u_name']=='rahul_2608')
+							if($_SESSION['u_name']=='THL' || $_SESSION['u_name']=='shubh')
 							{
 							?>
 							</center>
@@ -312,6 +377,37 @@ body { padding-top: 70px; background:white }
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <script src="js/super-panel.js"></script>
       <script src="js/profile.js"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="js/plugins/dataTables/jquery.dataTables.min.js"></script>
+  <script src="js/plugins/dataTables/dataTables.buttons.min.js"></script>
+  <script src="js/plugins/dataTables/buttons.colVis.min.js"></script>
+  <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+    <script src="js/plugins/dataTables/dataTables.responsive.js"></script>
+  <script src="js/plugins/dataTables/dataTables.tableTools.min.js"></script>
+  
+  <script>
+$(document).ready(function() {
+
+    var table  = $('#footable1').DataTable( {
+     
+      "bDestroy":true,
+      "bFilter": true,
+      'dom': 'lfrtip',
+      'columnDefs': [{
+         'targets': 0,
+         'searchable':true,
+         'orderable':true,
+         'className': 'dt-body-center'
+      }],
+      "buttons": [
+            'colvis',
+        ]
+    });
+  });
+
+</script>
 	<script>
 	$(document).ready(function(){	
 	$(document).on('change','#select',function(){

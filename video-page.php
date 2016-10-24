@@ -3,6 +3,8 @@
 <head>
     <title><?=$_GET['v_name']?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">    
     <link href="css/page.css" rel="stylesheet" />
     <link href="css/super-panel.css" rel="stylesheet" />
     <script src="js/super-panel.js"></script>
@@ -18,9 +20,53 @@
 	</header> 
 		<link href="css/video-js.css" rel="stylesheet">
 		<script src="js/videojs-ie8.min.js"></script>
-    <div style="width:800px;margin:0 auto;padding:100px;background:white;">
-		<p style="text-align:center; font-size:28px; font-family: 'Courier New', Georgia;"><?=$_GET['v_name']?></p>
-		<div style="padding-left:5%">
+    <div style="width:800px;margin:0 auto;padding:20px;background:white;">
+    	<blockquote class="blockquote blockquote-reverse" style="padding: 5%;text-align:left;">
+		  	<p class="mb-0" style="margin: 0 0 2px;font-size:28px;"><i><?=$_GET['v_name']?></i>
+		  		<span id="request_status">
+		  		<button style="float:right;" class="btn btn-success" id="create_request">Create Pull Request</button>
+		  		<!-- <span class="label label-warning" style="float:right;font-size: 75%;">Pending Request</span> -->
+		  		</span>
+		  	</p>
+  		 	<footer style="margin-left:30%;" class="blockquote-footer">By<cite title="Source Title">Shubham Sharma</cite></footer>
+		</blockquote>
+		<hr>
+
+
+		<div id="request" style="display:none;">
+			 <div class="row">
+			 	<div class="container">
+			 		<div class="col-lg-12">
+			 			<div class="col-lg-3-offset"></div>
+			 			<div class="col-lg-3">
+			 				  <div class="form-group">
+      							<label for="sel1">Album List (<i>select one</i>):</label>
+      								<select class="form-control" id="">
+								        <option>1</option>
+								        <option>2</option>
+								        <option>3</option>
+								        <option>4</option>
+      								</select>
+      						  </div> 		
+			 			</div>
+
+			 			<div class="col-lg-3">
+			 				<div class="form-group">
+				 				<label for="msg">Any Msg:</label>
+	  							<input type="text" class="form-control" id="msg">
+			 				</div>
+			 			</div>
+			 			
+			 			<div class="col-lg-3" style="margin-top: 4px;padding-left:50px;">
+			 				<br>
+			 				<button style="background-color: rgba(0, 0, 0, 0.69);" class="btn btn-success" id="submit_request">CREATE</button>			
+			 			</div>
+			 		</div>
+			 	</div>
+			 </div>
+		</div>
+
+		<div style="padding:5%">
 			<!--poster="MY_VIDEO_POSTER.jpg"   include this below-->
 			<video poster="<?=substr($_GET['v_image'],0,strlen($_GET['v_image'])-4)."2".substr($_GET['v_image'],strlen($_GET['v_image'])-4)?>" id="my-video" class="video-js" controls preload="auto" width="720" height="364" data-setup="{}">
 			<source src="<?=$_GET['v_link']?>" type='video/mp4'>
@@ -53,7 +99,6 @@
 			</script>
 			<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 		</div>
-</body>
 	
 	
 	<div id="panel1">
@@ -71,4 +116,17 @@
         </p>
     </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).on('click','#create_request',function(){
+		$('#request').toggle(1000);
+	});
+	$(document).on('click','#submit_request',function(){
+		$('#request_status').html('<span class="label label-warning" style="float:right;font-size: 75%;">Pending Request</span>');
+		$('#request').hide();
+	});
+	
+
+</script>
 </html>
