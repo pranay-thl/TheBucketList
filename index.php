@@ -352,7 +352,7 @@ function show(){
     		function (res){
     	  $('.browse').html('res');
      	});*/
-     	    	  $('.browse').html('<li style="padding-top:10px;"><strong><i>'+name+'</i></strong></li>');
+     	    	  $('.browse').html('<li href = "hello" style="padding-top:10px;"><strong><i>'+name+'</i></strong></li>');
   }
 
   $('.browse').mouseleave(function(){
@@ -360,11 +360,10 @@ function show(){
   	});
 
   $('#searchForm').submit(function(event){
-        itemv=$('#search').val();
-            window.open('../productSearch/'+itemv+'');
-            return false;
+    	return false;
         event.preventDefault();
 	});
+
 </script>
 </body>
 </html>
