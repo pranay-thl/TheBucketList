@@ -10,12 +10,14 @@
 			$arr_v_name=array();
 			$arr_v_link=array();
 			$arr_v_image=array();
+			$arr_private=array();
 			$doc_size;
 			$cursor = $collection->find();
 			foreach ($cursor as $document) {
 				 array_push($arr_v_name,$document["v_name"]);
 				 array_push($arr_v_link,$document["v_link"]);
 				 array_push($arr_v_image,$document["v_image"]);
+				 array_push($arr_private,$document["is_private"]);
 			}
 			$doc_size=count($arr_v_name);
 			
@@ -27,6 +29,8 @@
 	<?php
 	for($i=0;$i<$doc_size;$i++)
 	{
+	if($arr_private[$i]=="public")
+	{
 	?>
     <li>
         <a class="rig-cell" href="video-page.php?v_link=<?=$arr_v_link[$i]?>&v_name=<?=$arr_v_name[$i]?>&v_image=<?=$arr_v_image[$i]?>">
@@ -36,6 +40,7 @@
         </a>
     </li>
 	<?php
+	}
 	}
 	$m->close();
 	?>
