@@ -120,7 +120,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).on('click','#create_request',function(){
-		$('#request').toggle(1000);
+		$('#request').toggle(500);
 	});
 	$(document).on('click','#submit_request',function(){
 		$('#request_status').html('<span class="label label-warning" style="float:right;font-size: 75%;">Pending Request</span>');
