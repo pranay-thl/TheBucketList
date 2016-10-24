@@ -23,26 +23,31 @@ $collection2=$db->videos;
           <!--  <a href="demo1.html" class="active">DEMO 1</a> -->
         </span>
     </header>
-    <div style="width:600px;margin:0 auto;:padding:80px;background:white;">
+    <div style="width:900px;margin:0 auto;:padding:80px;background:white;">
+    	<h1 style="text-align:center; font-size:18px; font-family: 'Courier New', Georgia;">List Of Users</h1>
 	        <?php
-		//$cur=collection1->find();
-		//foreach($cur as $doc)
-		//{
-		//?>
+		$cur=$collection1->find();
+		foreach($cur as $doc)
+		{
+		?>
 		<label>
-				<p><?//=$doc['u_name']?></p>
-		</label>
-		//<?php
-		//}
-		//$cur2=collection2->find();
-		//foreach($cur2 as $doc)
-		//{
-		//?>
-		<label>
-			<a href="video-page.php?v_link=<?//=$doc['v_link']?>&v_name=<?//=$doc['v_name']?>&v_image=<?=//$doc['v_image']?>">
+				<p style="text-align:center; font-size:18px; font-family: 'Courier New', Georgia;"><?=$doc['f_name']." ".$doc['l_name']?></p>
 		</label>
 		<?php
-		//}
+		}
+		?>
+		</br>
+		<h1 style="text-align:center; font-size:18px; font-family: 'Courier New', Georgia;">List Of Videos</h1>
+		<?php
+		$cur2=$collection2->find();
+		foreach($cur2 as $doc)
+		{
+		?>
+		<label>
+			<a href="video-page.php?v_link=<?=$doc['v_link']?>&v_name=<?=$doc['v_name']?>&v_image=<?=$doc['v_image']?>"><p style="text-align:center; font-size:18px; font-family: 'Courier New', Georgia;"><?=$doc['v_name']?></p></a>
+		</label>
+		<?php
+		}
 		?>
    </div>
 	<div id="panel1">
