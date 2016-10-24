@@ -341,30 +341,20 @@ var audio = document.getElementById("sound");
 		});
 </script>
 -->	
-<!-- '<li style="padding-top:10px;"><strong><i></i></strong></li>' -->
+
 <script type="text/javascript">        
 function show(){
     $('.browse').css('display','block');
     	var name=$('#search').val();
-<<<<<<< HEAD
-    	/*$.post(
-    		'php page url',
-    		{'name':name},
-    		function (res){
-    	  $('.browse').html('res');
-     	});*/
-     	    	  $('.browse').html('<li href = "hello" style="padding-top:10px;"><strong><i>'+name+'</i></strong></li>');
-=======
     	if(name=='')
     		$('.browse').css('display','none');
     	$.post(
     		'search_handler.php',
     		{'name':name},
     		function (res){
-    				//alert(res);
+    
     	  $('.browse').html(res);
      	});
->>>>>>> a22523af7b0cd52ae45f636f0a91b540c3c0f3be
   }
 
   $('.browse').mouseleave(function(){
@@ -372,19 +362,9 @@ function show(){
   	});
 
   $('#searchForm').submit(function(event){
-<<<<<<< HEAD
     	return false;
         event.preventDefault();
 	});
-
-=======
-        /*itemv=$('#search').val();*/
-        	//var redirect ='<?php echo $res1; ?>';// $( "li" ).first().attr('href');
-            //window.open(redirect);
-            //alert(redirect);
-            return false;
-	});
->>>>>>> a22523af7b0cd52ae45f636f0a91b540c3c0f3be
 </script>
 </body>
 </html>
