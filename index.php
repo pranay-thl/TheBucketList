@@ -151,31 +151,25 @@ var audio = document.getElementById("sound");
    <!-- <div class="div1"><h2>The Bucket List</h2></br></br>-->
    
    <div class="div2" style="margin-top:5px;margin-bottom:20px;width: 600px;">
-			<div class="container">
-			<form action="index.php" method="post" >
-	<div class="row">
+	<div class="container">
+	  <div class="row">
         <div class="col-md-6">
-            <div id="custom-search-input">
-                <div class="input-group col-md-12">
-				
-                    <input type="text" name="search" class="form-control input-lg" placeholder="Search Here :)" />
-                    <span class="input-group-btn">
-                        <button class="btn btn-info btn-lg" name="button" type="submit">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </span>
-					
-                </div>
+			<div class="col-lg-2" style="width: 6.76666667%;padding-right: 0px; padding-left: 0px;">
+				<a  class="btn btn-primary" style="float:left;"><i class="fa fa-search fa-lg"></i></a>
+			</div>
+			<div class="col-lg-10" style=" padding-right: 0px; padding-left: 0px;">
+			<form id="searchForm" role="search" class="h_search_form navbar-form-custom" action="">
+            <div class="form-group" >
+                <input type="text" autocomplete="off" placeholder="Start typing..." class="form-control" name="search" id="search" onkeyup="show();">
+				<ul id="browse" class="browse list-group" style="display:none;margin-left:0;padding: 10px;"></ul>
             </div>
-			</div>
+           	</form>
+           	</div>
 		</div>
-		
-	</div>
-       
-    </form>
-			</div>
-   
-   
+	  </div>
+    </div>
+   </div>    
+
    <div>
 		
 			<div class="div2">
@@ -347,5 +341,33 @@ var audio = document.getElementById("sound");
 		});
 </script>
 -->	
+<!-- '<li style="padding-top:10px;"><strong><i></i></strong></li>' -->
+<script type="text/javascript">        
+function show(){
+    $('.browse').css('display','block');
+    	var name=$('#search').val();
+    	if(name=='')
+    		$('.browse').css('display','none');
+    	$.post(
+    		'search_handler.php',
+    		{'name':name},
+    		function (res){
+    				//alert(res);
+    	  $('.browse').html(res);
+     	});
+  }
+
+  $('.browse').mouseleave(function(){
+    	$('.browse').css('display','none');
+  	});
+
+  $('#searchForm').submit(function(event){
+        /*itemv=$('#search').val();*/
+        	//var redirect ='<?php echo $res1; ?>';// $( "li" ).first().attr('href');
+            //window.open(redirect);
+            //alert(redirect);
+            return false;
+	});
+</script>
 </body>
 </html>
