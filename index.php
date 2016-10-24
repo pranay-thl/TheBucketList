@@ -215,6 +215,7 @@ var audio = document.getElementById("sound");
         <div id="vertical-nav">
             <a href="video.php">Videos</a>
 			<a href="album.php">Albums</a>
+			<a href="about.php">About us</a>
         </div>
         <br /><br />
         <p style="text-align:center;font-size:smaller;font-style:italic;">
