@@ -5,6 +5,7 @@ $m = new MongoClient();
 $db = $m->bucket;
 $collection = $db->user;
 $collection2 =$db->videos;
+$collection3 =$db->albums;
 include('upload.php');
 ?>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
@@ -91,12 +92,6 @@ body { padding-top: 70px; background:white }
                             <span>Upload</span>
                         </a>
                     </li>
-                    <li>
-                        <a data-toggle="tab" href="">
-                            <!-- <span class="glyphicon glyphicon-calendar"></span> -->
-                            <span>Liked</span>
-                        </a>
-                    </li>
                 </ul>
                 <div class="user-body" style="padding:0;width:100%;">
                     <div class="tab-content">
@@ -180,10 +175,81 @@ body { padding-top: 70px; background:white }
 							?>
                         </div>
                         <div id="email" class="tab-pane">
-                            <h4>Send Message</h4>
+                            <h4>Albums</h4>
+			    <div class="row">	
+				<span style=" font-family: 'Courier New', Georgia;"><p style="font-size:18px;text-align:center">Create New Album</p></span>
+				<div class="container">
+					<div class="col-lg-offset-4"></div>
+						<?php
+							$msg2='';
+							if(isset($_POST['album_create']))
+							{
+								if(!empty($_POST['album_name']))
+								{
+								$already = $collection3->findOne(array("u_name" => $_POST['album_name']));
+									if($already)
+									{
+										$msg2="Album already exists, please choose a diffrent name";
+									}
+									else
+									{
+										$u_name=$_SESSION['u_name'];
+										$v_name="null";
+										$album_name=$_POST['album_name'];
+										$document = array( 
+										"u_name" =>$u_name, 
+										"v_name" =>$v_name, 
+										"album_name" =>$album_name
+										);
+										$collection3->insert($document);
+									}
+								}
+								else
+								{
+									$msg2="Please Enter an album name";	
+								}
+							}
+						?>
+						<div class="col-lg-8>">
+							<form action="#email" method="POST">
+							<div class="col-lg-4">
+							</br>
+							   <label>Album Name :<label>							
+							</div>
+							<div class="col-lg-4">
+								<?php
+								if($msg2!='')
+								{
+									echo $msg2;
+								}
+								?>
+								</br>
+								<input type="text" name="album_name" />
+							</div>
+							<div class="col-lg-4">
+								</br>
+								<input type="submit" value ="Create" name="album_create" class="btn btn-default"></input>
+							</div>
+							</form>
+						</div>
+						<div class="col-lg-4"></div>
+				</div>
+			     </div>					
+			<?php
+							$cursor=$collection3->find();
+							foreach ($cursor as $document)
+							{
+								if($document['u_name']==$_SESSION['u_name'])
+								{
+								?>
+								<a href="album-page.php?album_name=<?=$document['album_name']?>"><p style="text-align:center; font-size:18px; font-family: 'Courier New', Georgia;"><?=$document['album_name']?></p></a>
+								<?php
+								}
+							}
+							?>
                         </div>
                         <div id="events" class="tab-pane">
-                            <h4>Events</h4>
+                            <h4>Upload</h4>
 							<center>
 							<?php
 							if($msg!='')
@@ -192,36 +258,43 @@ body { padding-top: 70px; background:white }
 									<p><?=$msg?></p>
 							<?php
 							}
-							?>
-							<?php
 							if($_SESSION['u_name']=='THL')
 							{
 							?>
-							<script type="text/javascript">
-								google_ad_client = "ca-pub-6338063578832547";
-								google_ad_slot = "5073283314";
-								google_ad_width = 600;
-								google_ad_height = 90;
-							</script>
-							<script type="text/javascript"
-							src="//pagead2.googlesyndication.com/pagead/show_ads.js">
-							</script>
 							</center>
 							<hr/>
 							<form action="#events" method="post" enctype="multipart/form-data">
-							<table bgcolor="#F9F9F9" border="0" style="padding:10px" align="center">
-							<tr>
-								<td colspan="2"></td>
-							</tr>
-							<tr>
-								  <td height="50">Choose Video</td>
-								  <td> <input type="file" name="fileToUpload"/> </td>
-							</tr>
-							<tr>
-								 <td height="50" colspan="2" align="center">
-								 <input type="submit" value="Upload Video" name="Upload"/>
-							</tr>
-							</table>
+							<div class="row">
+							<div class="col-lg-4" style="padding-left: 50px;">
+								<input type="file" name="fileToUpload"/> 
+							</div>
+							<div class="col-lg-4">
+							<select id="select_album" name="album_select_name">
+							<option value="null">Empty</option>
+							<?php
+							$cur=$collection3->find();
+							foreach($cur as $doc)
+							{
+							?>	
+							  <option value="<?=$doc['album_name']?>"><?=$doc['album_name']?></option>
+							<?php
+							}
+							?>
+							</select>
+							</div>
+							<div class="col-lg-4">
+							<select id="select" name="is_private">
+							  <option value="public">Public</option>
+							  <option value="private">Private</option>
+				
+							</select>
+							</div>
+							<div class="clearfix"></div>
+						
+							<div class="col-lg-12" style="margin-top:50px;">	 
+								 <input type="image" name="Upload" src="/images/very-basic-upload-icon.png" height="30" width ="30"></input>	
+							</div>
+							</div>
 							</form>
 							<?php
 							}
@@ -241,5 +314,18 @@ body { padding-top: 70px; background:white }
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <script src="js/super-panel.js"></script>
       <script src="js/profile.js"></script>
+	<script>
+	$(document).ready(function(){	
+	$(document).on('change','#select',function(){
+		if($(this).val()=='private')
+		{	$('#select_album').val('null');
+			$('#select_album').prop('disabled',true);
+		}	
+		else
+			$('#select_album').prop('disabled',false);	
+				
+	});
+	});
+	</script>
 </body>
 </html>

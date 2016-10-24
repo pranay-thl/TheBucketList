@@ -40,8 +40,9 @@
 			<label>
 				User Name: <input type="text" name="username">
 			</label>
+			</br>
 			<label>
-				Password: <input type="password" name="password">
+				Password:&nbsp&nbsp&nbsp <input type="password" name="password">
 			</label>
 		<input type="submit" name="login" value="login">
 		</form>

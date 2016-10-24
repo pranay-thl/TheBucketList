@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html>
+<?php
+$m=new mongoClient();
+$db=$m->bucket;
+$collection1=$db->user;
+$collection2=$db->videos;
+?>
+
 <head>	
     <title>Admin Panel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,53 +23,27 @@
           <!--  <a href="demo1.html" class="active">DEMO 1</a> -->
         </span>
     </header>
-	<?php
-			$m = new MongoClient();
-			$db = $m->bucket;
-			$collection = $db->videos;
-			$v_name='';
-			$v_link='';
-			$v_image='';
-			$vout='';
-			if(isset($_POST['submit']))
-			{
-				$v_name=$_POST['v_name'];
-				$v_link=$_POST['v_link'];
-				$v_image=$_POST['v_image'];
-				if($v_name==''||$v_link==''||$v_image=='')
-				{
-					$vout='Invalid Credentials';
-					//echo 'hi';
-				}
-				else
-				{
-					//echo $m_name.' '.$m_link.' '.$m_image;
-					$document = array( 
-					"v_name" =>$v_name, 
-					"v_link" =>$v_link, 
-					"v_image" =>$v_image
-					);
-					$collection->insert($document);
-					$vout='Succesfully inserted into database';
-				}
-			}
-		?>
-    <div style="width:600px;margin:0 auto;padding:80px;background:white;">
-        <form action="admin.php" method="post">
-				<p>Video Name: <input type="text" name="v_name"></p>
-				</br>
-				</br>
-				<p>Video Link: <input type="text" name="v_link"></p>
-				</br>
-				</br>
-				<p>Video Image: <input type="text" name="v_image"></p>
-				</br>
-				</br>
-		<input type="submit" name="submit" value="submit">
-		</form>
+    <div style="width:600px;margin:0 auto;:padding:80px;background:white;">
+	        <?php
+		//$cur=collection1->find();
+		//foreach($cur as $doc)
+		//{
+		//?>
 		<label>
-				<p><?=$vout?></p>
+				<p><?//=$doc['u_name']?></p>
 		</label>
+		//<?php
+		//}
+		//$cur2=collection2->find();
+		//foreach($cur2 as $doc)
+		//{
+		//?>
+		<label>
+			<a href="video-page.php?v_link=<?//=$doc['v_link']?>&v_name=<?//=$doc['v_name']?>&v_image=<?=//$doc['v_image']?>">
+		</label>
+		<?php
+		//}
+		?>
    </div>
 	<div id="panel1">
 		</br></br>
