@@ -326,7 +326,7 @@ body { padding-top: 70px; background:white }
 									<p><?=$msg?></p>
 							<?php
 							}
-							if($_SESSION['u_name']=='THL' || $_SESSION['u_name']=='rahul_2608')
+							if(isset($_SESSION['u_name']))
 							{
 							?>
 							</center>
