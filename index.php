@@ -99,7 +99,7 @@ if(isset($_SESSION['u_name']))
 		  <?php
 		  }
 		  ?>
-          <img margin-right=5px; id="status" src="images/pause.png" alt="Play Button" width="50" height="50"  style="cursor: pointer;" onclick="playSound()" >
+          <!--<img margin-right=5px; id="status" src="images/pause.png" alt="Play Button" width="50" height="50"  style="cursor: pointer;" onclick="playSound()" >-->
         </span>
     </header>  
 
@@ -129,7 +129,7 @@ if(isset($_SESSION['u_name']))
 </audio> -->
 </br>
 
-<audio id="sound" src="sound/The_Big_Ship.mp3" autoplay loop></audio>
+<!--<audio id="sound" src="sound/The_Big_Ship.mp3" autoplay loop></audio>
 <script type="text/javascript">
 var audio = document.getElementById("sound");
 	function playSound()
@@ -143,7 +143,7 @@ var audio = document.getElementById("sound");
 			audio.play();
 		}
 	}
-</script>
+</script>-->
    <!-- <div class="div1"><h2>The Bucket List</h2></br></br>-->
    
    <div class="div2" style="margin-top:5px;margin-bottom:20px;width: 600px;">
@@ -177,9 +177,9 @@ var audio = document.getElementById("sound");
 		
 	<!-- 	Append this section to change the images -->
             <a href="video-page.php?v_link=data/videos/Watchtower of Turkey.mp4&v_name=Watchtower of Turkey&v_image=data/videos/Watchtower.of.Turkey.jpg"><img src="data/videos/Watchtower.of.Turkey3.jpg" alt="Watchtower of Turkey"/></a>
-             <a href="video-page.php?v_link=data/videos/meandearl.mp4&v_name=Me and Earl and the dying girl&v_image=data/videos/default.jpg"><img src="images/image-slider-2.gif" alt="Me and Earl and The Dying Girl(2015)"/></a>
-           <a href="video-page.php?v_link=data/videos/shortterm12.mp4&v_name=Short Term 12&v_image=data/videos/default.jpg"><img src="images/image-slider-3.jpeg" alt="Short Term 12 (2013)"/></a>
-                       <a href="video-page.php?v_link=data/videos/perks.mp4&v_name=The Perks of being a Wallflower&v_image=data/videos/default.jpg"><img src="images/image-slider-4.gif" alt="The Perks of Being a Wallflower(2012)"/></a>
+             <a href="video-page.php?v_link=data/videos/Me and Earl and the dying girl.mp4&v_name=Me and Earl and the dying girl&v_image=data/videos/default.jpg"><img src="images/image-slider-2.gif" alt="Me and Earl and The Dying Girl(2015)"/></a>
+           <a href="video-page.php?v_link=data/videos/Short Term 12.mp4&v_name=Short Term 12&v_image=data/videos/default.jpg"><img src="images/image-slider-3.jpeg" alt="Short Term 12 (2013)"/></a>
+                       <a href="video-page.php?v_link=data/videos/The Perks of being a Wallflower.mp4&v_name=The Perks of being a Wallflower&v_image=data/videos/default.jpg"><img src="images/image-slider-4.gif" alt="The Perks of Being a Wallflower(2012)"/></a>
        
 	   </div>
         <div id="htmlcaption" style="display: none;">

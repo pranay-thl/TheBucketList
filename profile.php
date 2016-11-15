@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <?php
 session_start();
@@ -9,6 +8,10 @@ $collection2 =$db->videos;
 $collection3 =$db->albums;
 $collection4=$db->pull_request;
 include('upload.php');
+if(!isset($_SESSION['u_name']))
+{
+	header("Location: login.php");
+}
 ?>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
@@ -199,7 +202,7 @@ body { padding-top: 70px; background:white }
                     <li>
                         <a data-toggle="tab" href="#requests">
                             <!-- <span class="glyphicon glyphicon-envelope"></span> -->
-                            <span>Pull Requests</span><span class="badge"><?=$collection4->find()->count()?></span>
+                            <span>Pull Requests</span><span class="badge"><?=$collection4->find(array("to_u_name"=>$_SESSION['u_name']))->count()?></span>
                         </a>
                     </li>
                 </ul>
@@ -256,6 +259,20 @@ body { padding-top: 70px; background:white }
     </div>
                             <!--  -->
                         </div>
+                        <?php
+                        if(isset($_POST['delete']))
+                        {
+                        	?>
+                        	<script>
+                        		alert("Video Deleted :"+"<?=$_POST['del_name']?>");
+                        	</script>
+                        	<?php
+                        	$collection2->remove(array("v_name"=>$_POST['del_name']));
+                        	$collection4->remove(array("v_name"=>$_POST['del_name']));
+                        	unlink($_POST['del_link']);
+
+                        }
+                        ?>
                         <div id="settings" class="tab-pane">
                             <h4>Uploaded Videos</h4>
 							<?php
@@ -263,7 +280,26 @@ body { padding-top: 70px; background:white }
 							foreach ($cursor as $document)
 							{
 								?>
+								<div class="col-lg-4">
 								<a href="video-page.php?v_link=<?=$document['v_link']?>&v_name=<?=$document['v_name']?>&v_image=<?=$document['v_image']?>"><p style="text-align:center; font-size:18px; font-family: 'Courier New', Georgia;"><?=$document['v_name']?></p></a>
+								</div>
+								<div class="col-lg-4">
+								<?php
+								if($document['approval']==1)
+								{
+								?>
+								<span class="label label-warning" style="float:right;font-size: 75%;">Pending Approval</span>
+								<?php
+								}
+								?>
+								</div>
+								<div class="col-lg-4">
+									<form method="POST" action="profile.php">
+									<input type="hidden" name="del_link" value="<?=$document['v_link']?>"></input>
+									<input type="hidden" name="del_name" value="<?=$document['v_name']?>"></input>
+									<input type="submit" value="Delete" name="delete"></input>
+									</form>
+								</div>
 								<?php
 							}
 							?>
@@ -294,6 +330,7 @@ body { padding-top: 70px; background:white }
 										"album_name" =>$album_name
 										);
 										$collection3->insert($document);
+										$msg2="Album ".$album_name." has been created successfully";
 									}
 								}
 								else
@@ -312,7 +349,11 @@ body { padding-top: 70px; background:white }
 								<?php
 								if($msg2!='')
 								{
-									echo $msg2;
+									?>
+									<script>
+									alert("<?=$msg2?>");
+									</script>
+									<?php
 								}
 								?>
 								</br>
@@ -326,15 +367,33 @@ body { padding-top: 70px; background:white }
 						</div>
 						<div class="col-lg-4"></div>
 				</div>
-			     </div>					
+			     </div>	
+			     <br><br><br>				
 			<?php
+							if(isset($_POST['a_delete']))
+							{
+								?>
+								<script>alert("Album Deleted: "+"<?=$_POST['del_a_name']?>");</script>
+								<?php
+								$collection2->update(array("album_name"=>$_POST['del_a_name']),array('$set'=>array('album_name' => "null")));
+								$collection3->remove(array("album_name"=>$_POST['del_a_name']));
+								$collection4->remove(array("album_name"=>$_POST['del_a_name']));
+							}
 							$cursor=$collection3->find();
 							foreach ($cursor as $document)
 							{
 								if($document['u_name']==$_SESSION['u_name'])
 								{
 								?>
+								<div class="col-lg-8">
 								<a href="album-page.php?album_name=<?=$document['album_name']?>"><p style="text-align:center; font-size:18px; font-family: 'Courier New', Georgia;"><?=$document['album_name']?></p></a>
+								</div>
+								<div class="col-lg-4">
+									<form method="POST" action="profile.php">
+									<input type="hidden" name="del_a_name" value="<?=$document['album_name']?>"></input>
+									<input type="submit" value="Delete" name="a_delete"></input>
+									</form>
+								</div>
 								<?php
 								}
 							}
@@ -356,7 +415,8 @@ body { padding-top: 70px; background:white }
                                                         <tr>
                                                             <th ><i>User Name</i></th>
                                                             <th >Video Name</th>  
-                                                            <th >Album Name</th>             
+                                                            <th >Album Name</th>
+                                                            <th>PR Message</th>             
                                                             <th ></th>
                                                             <th ></th>                                                                                                
                                                         </tr>
@@ -371,6 +431,7 @@ body { padding-top: 70px; background:white }
                                                             echo '<td id="'.$counter.'p">'.$doc['pull_u_name'].'</td>';
                                                             echo '<td id="'.$counter.'v">'.$doc['v_name'].'</td>';
                                                             echo '<td id="'.$counter.'a">'.$doc['album_name'].'</td>';
+                                                            echo '<td id="'.$counter.'a">'.$doc['pull_msg'].'</td>';
                                                             echo '<td ><input id="'.$counter.'" type="button" class="btn btn-success accept '.$counter.'accept" value="Accept"></td>';
                                                             echo '<td ><input id="'.$counter.'" type="button" class="btn btn-danger remove '.$counter.'remove" value="Decline"></td>';
                                                             echo ' </tr>';
@@ -400,7 +461,7 @@ body { padding-top: 70px; background:white }
 							if($msg!='')
 							{
 							?>
-									<p><?=$msg?></p>
+									<script>alert("<?=$msg?>");</script>
 							<?php
 							}
 							if(isset($_SESSION['u_name']))
@@ -513,7 +574,7 @@ $(document).ready(function() {
 				"dataType":"html",
 				"data":{pull_u_name:text,v_name:text1,album_name:text2,flag:2},
 				success:function(res){
-						alert(res);
+						//alert(res);
 				}
 			});
     	$(this).val("Accepted");
@@ -533,7 +594,7 @@ $(document).ready(function() {
 				"dataType":"html",
 				"data":{pull_u_name:text,v_name:text1,album_name:text2,flag:1},
 				success:function(res){
-						alert(res);
+						//alert(res);
 				}
 			});
     	$(this).val("Declined");

@@ -142,6 +142,10 @@ if(isset($_SESSION['u_name']))
 			</video>
 			<script src="js/video.js"></script>
 		</div>
+		<?php
+		if(isset($_SESSION['u_name']))
+		{
+		?>
 		<div id="disqus_thread"></div>
 			<script>
 
@@ -163,6 +167,15 @@ if(isset($_SESSION['u_name']))
 			</script>
 			<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 		</div>
+		<?php
+		}
+		else
+		{
+			?>
+			<p id="vid" class="mb-0" style="margin-left: 140px;font-size:15px;font-family: 'memphis_lt_stdlight';"><i>Please <a href="login.php">Login</a> to post a comment and join the discussion</i></p>
+			<?php
+		}
+		?>
 	
 	
 	<div id="panel1">
