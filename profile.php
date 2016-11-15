@@ -26,6 +26,7 @@ include('upload.php');
         <link rel="stylesheet" type="text/css" href="css/animate-custom.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
         <link href="css/page.css" rel="stylesheet" />
         <link href="css/super-panel.css" rel="stylesheet" />
         <link href="css/profile1.css" rel="stylesheet" />
@@ -53,6 +54,103 @@ body { padding-top: 70px; background:white }
 </style>
     </head>
     <body>
+    <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    <?php
+      if(isset($_POST['Update']))
+      {
+        $dob = $_POST['dob'];
+        $Gender = $_POST['Gender'];
+        $Address = $_POST['Address'];
+        $email = $_POST['email'];
+        $p_no1 = $_POST['p_no1'];
+        $p_no2 = $_POST['p_no2'];
+      } 
+    
+        $name='';
+        $user=$collection->findOne(array("u_name" => $_SESSION['u_name']));
+        $name=($user['f_name'])." ".($user['l_name']);
+    ?>
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Profile</h4>
+        </div>
+        <form action="profile.php" method="POST" id="update_info"> 
+        <div class="modal-body">
+          <!--  -->
+                   
+            <div class="container" style="width:100%;">
+              <div class="row">
+               <div class="col-xs-12 col-sm-12" style="padding:0px;" >
+                <div class="panel panel-info">
+                  <div class="panel-heading">
+                    <h3 class="panel-title"><?=$name?></h3>
+                  </div>
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-3 col-lg-3 " align="center"> 
+                        <img alt="User Pic" src="images/head-33638_640.png" class="img-circle img-responsive"> 
+                      </div>
+                      <div class=" col-md-9 col-lg-9 ">  
+                      <table class="table table-user-information">
+                        <tbody>
+                        <tr>
+                          <td>Date of Birth</td>
+                          <td><input class="form-control" type="" name="dob" placeholder="01/24/1988"></td>
+                        </tr> 
+                        <tr>
+                          <td>Gender</td>
+                          <td><label class="radio-inline">
+                                <input type="radio" name="Gender" value="Female">Female
+                              </label>
+                              <label class="radio-inline">
+                                <input type="radio" name="Gender" value="Male" checked>Male
+                              </label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Home Address</td>
+                          <td>
+                            <textarea name="Address" class="form-control" rows="2" placeholder="Metro Manila,Philippines"></textarea>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Email</td>
+                          <td><input class="form-control" type="" name="email" placeholder="<?=$user['email']?>"></td>
+                        </tr>
+                        <tr>
+                          <td>Phone Number</td>
+                          <td><input type="" name="p_no1" class="form-control" placeholder="123-4567-890">
+                              <br>
+                              <input type="" name="p_no2" class="form-control" placeholder="555-4567-890">
+                              </td>   
+                        </tr>
+                        </tbody>
+
+                      </table>
+                      </div>
+                    </div>
+                  </div> 
+                </div>
+               </div>
+              </div>
+            </div>
+            
+          <!--  -->
+        </div>
+        <div class="modal-footer">
+          <input  type="submit" class="btn btn-success" name="Update" value="Update">
+        </div>
+        </form> 
+      </div>
+       
+    </div>
+  </div>
+
     <nav class="navbar navbar-default navbar-fixed-top">
     <header>
         <span style="float:left;"><a href="index.php"><i class="fa fa-arrow-left" style="font-size: 20px;margin-top: 18px;"></i></a></span>
@@ -70,11 +168,6 @@ body { padding-top: 70px; background:white }
             </div>
             <div class="user-info-block">
                 <div class="user-heading">
-					<?php
-						$name='';
-						$user=$collection->findOne(array("u_name" => $_SESSION['u_name']));
-						$name=($user['f_name'])." ".($user['l_name']);
-					?>
                     <h3><?=$name?></h3>
                     <span class="help-block">Chandigarh, IN</span>
                 </div>
@@ -113,14 +206,11 @@ body { padding-top: 70px; background:white }
                 <div class="user-body" style="padding:0;width:100%;">
                     <div class="tab-content">
                         <div id="information" class="tab-pane active">
-                            
                             <!--  -->
     <div class="container" style="width:100%;">
+     
       <div class="row">
-      
         <div class="col-xs-12 col-sm-12" style="padding:0px;" >
-   
-   
           <div class="panel panel-info">
             <div class="panel-heading">
               <h3 class="panel-title"><?=$name?></h3>
@@ -132,20 +222,9 @@ body { padding-top: 70px; background:white }
                   <table class="table table-user-information">
                     <tbody>
                       <tr>
-                        <td>Department:</td>
-                        <td>Programming</td>
-                      </tr>
-                      <tr>
-                        <td>Hire date:</td>
-                        <td>06/23/2013</td>
-                      </tr>
-                      <tr>
                         <td>Date of Birth</td>
                         <td>01/24/1988</td>
                       </tr>
-                   
-                         <tr>
-                             <tr>
                         <td>Gender</td>
                         <td>Male</td>
                       </tr>
@@ -168,16 +247,14 @@ body { padding-top: 70px; background:white }
                 </div>
               </div>
             </div>
-                 <div class="panel-footer" style="padding: 40px 15px;">
-                            <a href="#" data-original-title="Edit" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-                    </div>
-            
+            <div class="panel-footer" style="padding: 40px 15px;">
+               <a href="#" data-toggle="modal" type="button" class="btn btn-sm btn-warning" data-target="#myModal"><i class="glyphicon glyphicon-edit"></i></a> 
+            </div>
           </div>
         </div>
       </div>
     </div>
                             <!--  -->
-
                         </div>
                         <div id="settings" class="tab-pane">
                             <h4>Uploaded Videos</h4>
@@ -378,18 +455,17 @@ body { padding-top: 70px; background:white }
           <div class="container">
           </div>
         </nav>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      <script src="js/super-panel.js"></script>
-      <script src="js/profile.js"></script>
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <script src="js/super-panel.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
   <script src="js/plugins/dataTables/jquery.dataTables.min.js"></script>
   <script src="js/plugins/dataTables/dataTables.buttons.min.js"></script>
   <script src="js/plugins/dataTables/buttons.colVis.min.js"></script>
   <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
-    <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
-    <script src="js/plugins/dataTables/dataTables.responsive.js"></script>
+  <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+  <script src="js/plugins/dataTables/dataTables.responsive.js"></script>
   <script src="js/plugins/dataTables/dataTables.tableTools.min.js"></script>
   
   <script>
@@ -467,6 +543,11 @@ $(document).ready(function() {
 
 	});
 	</script>
+ <!--  <script type="text/javascript">
+  function form_submit() {
+    document.getElementById("update_info").submit();
+   }    
+  </script> -->
 	<?php
 	$m->close();
 	?>
