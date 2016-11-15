@@ -100,7 +100,7 @@ body { padding-top: 70px; background:white }
                         <tbody>
                         <tr>
                           <td>Date of Birth</td>
-                          <td><input class="form-control" type="" name="dob" placeholder="01/24/1988"></td>
+                          <td><input class="form-control" type="date" name="dob" placeholder="01/24/1988" required></td>
                         </tr> 
                         <tr>
                           <td>Gender</td>
@@ -115,18 +115,18 @@ body { padding-top: 70px; background:white }
                         <tr>
                           <td>Home Address</td>
                           <td>
-                            <textarea name="Address" class="form-control" rows="2" placeholder="Metro Manila,Philippines"></textarea>
+                            <textarea name="Address" class="form-control" rows="2" placeholder="Metro Manila,Philippines" required></textarea>
                           </td>
                         </tr>
                         <tr>
                           <td>Email</td>
-                          <td><input class="form-control" type="" name="email" placeholder="<?=$user['email']?>"></td>
+                          <td><input class="form-control" type="email" name="email" placeholder="<?=$user['email']?>" required></td>
                         </tr>
                         <tr>
                           <td>Phone Number</td>
-                          <td><input type="" name="p_no1" class="form-control" placeholder="123-4567-890">
+                          <td><input type="number" min="0000000"   name="p_no1" class="form-control" placeholder="123-4567-890" required>
                               <br>
-                              <input type="" name="p_no2" class="form-control" placeholder="555-4567-890">
+                              <input type="number" min="000000000" max="9999999999" name="p_no2" class="form-control" placeholder="555-4567-890">
                               </td>   
                         </tr>
                         </tbody>
@@ -164,7 +164,7 @@ body { padding-top: 70px; background:white }
 	<div class="row">
 		<div class="col-sm-12 col-md-12 user-details">
             <div class="user-image">
-                <img src="images/User-Default.jpg" alt="Karan Singh Sisodia" title="Karan Singh Sisodia" class="img-circle">
+                <img src="images/User-Default.jpg" alt="<?=$name?>" title="<?=$name?>" class="img-circle">
             </div>
             <div class="user-info-block">
                 <div class="user-heading">
