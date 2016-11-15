@@ -13,7 +13,7 @@
 			$doc_size;
 			$cursor = $collection->find();
 			foreach ($cursor as $document) {
-				if($_GET['album_name']==$document['album_name'])
+				if($_GET['album_name']==$document['album_name']&&$document['approval']==2)
 				{
 				 array_push($arr_v_name,$document["v_name"]);
 				 array_push($arr_v_link,$document["v_link"]);
