@@ -282,6 +282,7 @@ body { padding-top: 70px; background:white }
               foreach ($cursor as $document)
               {
                 ?>
+                <div class="row">
                 <div class="col-lg-4">
                 <a href="video-page.php?v_link=<?=$document['v_link']?>&v_name=<?=$document['v_name']?>&v_image=<?=$document['v_image']?>"><p style="text-align:center; font-size:18px; font-family: 'Courier New', Georgia;"><?=$document['v_name']?></p></a>
                 </div>
@@ -304,6 +305,7 @@ body { padding-top: 70px; background:white }
                   <input type="hidden" name="del_name" value="<?=$document['v_name']?>"></input>
                   <input type="submit" value="Delete" name="delete"></input>
                   </form>
+                </div>
                 </div>
                 <?php
               }

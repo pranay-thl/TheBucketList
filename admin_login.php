@@ -27,30 +27,30 @@ if(isset($_SESSION['admin']))
         </span>
     </header>        
     <div style="width:600px;margin:0 auto;padding:15px;">
-		<?php
-			$u_name='';
-			$password='';
-			$vout='';
-			if(isset($_POST['login']))
-			{
-				$u_name=$_POST['username'];
-				$password=$_POST['password'];
-				if($u_name=='THL'&&$password=='behappydamnit')
-				{
-					$_SESSION['admin']=$u_name;
-					header("Location: admin.php");
-				}
-				else
-				{
-					$vout='Invalid Credentials';
-				}
-			}
-		?>
-		<div id="login-overlay" class="modal-dialog">
+    <?php
+      $u_name='';
+      $password='';
+      $vout='';
+      if(isset($_POST['login']))
+      {
+        $u_name=$_POST['username'];
+        $password=$_POST['password'];
+        if($u_name=='THL'&&$password=='behappydamnit')
+        {
+          $_SESSION['admin']=$u_name;
+          header("Location: admin.php");
+        }
+        else
+        {
+          $vout='Invalid Credentials';
+        }
+      }
+    ?>
+    <div id="login-overlay" class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-              <h4 class="modal-title" id="myModalLabel">ADMIN login to BucketList.com</h4>
+              <h4 class="modal-title" id="myModalLabel">ADMIN login to TheBucketList</h4>
           </div>
           <div class="modal-body">
               <div class="row">
@@ -72,10 +72,7 @@ if(isset($_SESSION['admin']))
                               <div id="loginErrorMsg" class="alert alert-error hide">Wrong username or password</div>
                               <?php } ?>
                               <div class="checkbox">
-                                  <label>
-                                      <input type="checkbox" name="remember" id="remember"> Remember login
-                                  </label>
-                                  <p class="help-block">(if this is a private computer)</p>
+
                               </div>
                               <input type="submit" class="btn btn-success btn-block" name="login" value="Login">
                           </form>
@@ -84,21 +81,18 @@ if(isset($_SESSION['admin']))
               </div>
           </div>
       </div>
-  	</div>
 
+    </div>
    </div>
-	<div id="panel1">
-		</br></br>
+  <div id="panel1">
+    </br></br>
         <!--<div style="text-align:center;margin:20px 0 10px;">
             <img src="src/socials.png" />
         </div>-->
         <div id="vertical-nav">
-            <a href="DC">TheHurtLocker</a>
-            <!--<a href="http://172.22.30.182:81/Shared">Linus</a>-->
-            <a href="grid.php">Movies</a>
-			<a href="movie_req.php">Movie Request</a>
-			<a href="chat_bot.php">Chat Bot</a>
-			<a href="admin_login.php">Admin</a>
+            <a href="video.php">Videos</a>
+      <a href="album.php">Albums</a>
+      <a href="about.php">About Us</a>
         </div>
         <br /><br />
         <p style="text-align:center;font-size:smaller;font-style:italic;">
@@ -106,7 +100,8 @@ if(isset($_SESSION['admin']))
         </p>
     </div>
 </body>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
   <script src="js/super-panel.js"></script> 
 </html>

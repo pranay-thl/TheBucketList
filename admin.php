@@ -69,13 +69,14 @@ if(!isset($_SESSION['admin']))
         <li>
             <a data-toggle="tab" href="#videos">
                             <!-- <span class="glyphicon glyphicon-cog"></span> -->
-            <span><h1 style="text-align:center; font-size:18px; font-family: 'Courier New', Georgia;">List Of Videos</h1></span>
+            <span><h1 style="text-align:center; font-size:18px; font-family: 'Courier New', Georgia;">Videos</h1></span>
+
             </a>
         </li>
         <li>
             <a data-toggle="tab" href="#albums">
                             <!-- <span class="glyphicon glyphicon-envelope"></span> -->
-             <span><h1 style="text-align:center; font-size:18px; font-family: 'Courier New', Georgia;">List Of Users</h1></span>
+             <span><h1 style="text-align:center; font-size:18px; font-family: 'Courier New', Georgia;">Users</h1></span>
             </a>
         </li>
     </ul>
@@ -83,14 +84,7 @@ if(!isset($_SESSION['admin']))
     <div class="tab-content">
 	    <div id="approval" class="tab-pane active">
 	    	<?php
-				if(isset($_POST['v_approve']))
-				{
-					$collection2->update(array("v_name"=>$_POST['r_v_name']),array('$set'=>array('approval' => 2)));
-				}
-				else if(isset($_POST['v_deny']))
-				{
-					$collection2->update(array("v_name"=>$_POST['r_v_name']),array('$set'=>array('approval' => 0)));
-				}
+		
 				$cur2=$collection2->find(array("approval" =>1,"is_private"=>"public"));
 				/**/
 			?>
@@ -116,18 +110,15 @@ if(!isset($_SESSION['admin']))
                                                     <?php
                                                     
                                                     	foreach($cur2 as $doc)
-														{
-															echo '<form method="POST" action="admin.php">';
-                                                            echo '<input type="hidden" name="r_v_name" value="'.$doc["v_name"].'">';
-                                                            echo '<tr >';
-                                                            echo                                                           
-                                                            '<td><a href="video-page.php?v_link='.$doc["v_link"].'&v_name='.$doc["v_name"].'&v_image='.$doc["v_image"].'"><p style="text-align:center; font-size:18px; font-family: "Courier New", Georgia;">'.$doc['v_name'].'</p></a></td>';
+														{?>
+                                                            <tr >
+                                                            <br>                                                           
+                                                            <td><a href="video-page.php?v_link='<?=$doc["v_link"]?>&v_name=<?=$doc["v_name"]?>&v_image=<?=$doc["v_image"]?>"><p style="text-align:center; font-size:18px; font-family: "Courier New", Georgia;"><?=$doc['v_name']?></p></a></td>
 
-                                                            echo '<td ><input type="submit" value="Approve" name="v_approve"></td>';																			
-                                                            echo '<td ><input type="submit" value="Deny" name="v_deny"></td>';
-                                                            echo ' </tr>';
-                                                            echo '</form>';
-                                                          
+                                                            <td ><input id="<?=$doc['v_name']?>" type="submit" value="Approve" class="v_approve"></input></td>																	
+                                                            <td ><input id="<?=$doc['v_name']?>" type="submit" value="Deny" class="v_deny"></input></td>
+                                                            </tr>
+                                                          <?php
                                                         }
                                                     ?> </tbody>
                                                     </table>
@@ -151,6 +142,7 @@ if(!isset($_SESSION['admin']))
 			<label>
 				<a href="video-page.php?v_link=<?=$doc['v_link']?>&v_name=<?=$doc['v_name']?>&v_image=<?=$doc['v_image']?>"><p style="text-align:center; font-size:18px; font-family: 'Courier New', Georgia;"><?=$doc['v_name']?></p></a>
 			</label>
+      <br>
 			<?php
 			}
 			?>
@@ -165,6 +157,7 @@ if(!isset($_SESSION['admin']))
 				<label>
 				<p style="text-align:center; font-size:18px; font-family: 'Courier New', Georgia;"><?=$doc['f_name']." ".$doc['l_name']?></p>
 				</label>
+        <br>
 			<?php
 				}
 			?>
@@ -224,5 +217,42 @@ $(document).ready(function() {
     });
   });
 
+  </script>
+
+  <script>
+   $(document).on('click','.v_approve',function(){
+    var id = this.id; 
+   // alert(id);
+      /*'<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'*/
+      $.ajax({
+        "url":"admin_handler.php",
+        "type":"post",
+        "dataType":"html",
+        "data":{v_name1:id},
+        success:function(res){
+           // alert(res);
+        }
+      });
+      $(this).val("Approved");
+      $(this).prop('disabled',true);    
+      $('#'+id).prop('disabled',true);           
+  });
+
+  $(document).on('click','.v_deny',function(){
+    var id = this.id; 
+      /*'<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'*/
+      $.ajax({
+        "url":"admin_handler.php",
+        "type":"post",
+        "dataType":"html",
+        "data":{v_name2:id},
+        success:function(res){
+            //alert(res);
+        }
+      });
+      $(this).val("Declined");
+      $(this).prop('disabled',true);      
+      $('#'+id).prop('disabled',true);
+  });
   </script>
 </html>
