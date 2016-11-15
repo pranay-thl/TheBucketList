@@ -3,8 +3,7 @@
 	<?php
 			$m = new MongoClient();
 			$db = $m->bucket;
-			$collection2=$db->albums;
-		$collection = $db->videos;
+			$collection = $db->videos;
 			$v_name='';
 			$v_link='';
 			$v_image='';
@@ -13,11 +12,6 @@
 			$arr_v_image=array();
 			$doc_size;
 			$cursor = $collection->find();
-			$cur=$collection2->find();
-			foreach($cur as $doc)
-			{
-			foreach ($cursor as $document) {
-				if($doc['v_name']==$document['v_name'])
 			foreach ($cursor as $document) {
 				if($_GET['album_name']==$document['album_name'])
 				{
@@ -25,7 +19,6 @@
 				 array_push($arr_v_link,$document["v_link"]);
 				 array_push($arr_v_image,$document["v_image"]);
 				}
-			}
 			}
 			$doc_size=count($arr_v_name);
 			

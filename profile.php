@@ -81,19 +81,19 @@ body { padding-top: 70px; background:white }
                     <li class="active">
                         <a data-toggle="tab" href="#information">
                             <!-- <span class="glyphicon glyphicon-user"></span> -->
-                            <span>My Profile</span>
+                            <span>Profile</span>
                         </a>
                     </li>
                     <li>
                         <a data-toggle="tab" href="#settings">
                             <!-- <span class="glyphicon glyphicon-cog"></span> -->
-                            <span>My Videos</span>
+                            <span>Videos</span>
                         </a>
                     </li>
                     <li>
                         <a data-toggle="tab" href="#email">
                             <!-- <span class="glyphicon glyphicon-envelope"></span> -->
-                            <span>My Albums</span>
+                            <span>Albums</span>
                         </a>
                     </li>
                     <li>
@@ -105,7 +105,7 @@ body { padding-top: 70px; background:white }
                     <li>
                         <a data-toggle="tab" href="#requests">
                             <!-- <span class="glyphicon glyphicon-envelope"></span> -->
-                            <span>Pull Request</span>
+                            <span>Pull Requests</span>
                         </a>
                     </li>
                 </ul>
