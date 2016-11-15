@@ -14,7 +14,6 @@ if(!isset($_SESSION['admin']))
 {
     header("Location: admin_login.php");
 }
-
 ?>
 
 <head>	
@@ -70,7 +69,6 @@ if(!isset($_SESSION['admin']))
             <a data-toggle="tab" href="#videos">
                             <!-- <span class="glyphicon glyphicon-cog"></span> -->
             <span><h1 style="text-align:center; font-size:18px; font-family: 'Courier New', Georgia;">Videos</h1></span>
-
             </a>
         </li>
         <li>
@@ -84,7 +82,7 @@ if(!isset($_SESSION['admin']))
     <div class="tab-content">
 	    <div id="approval" class="tab-pane active">
 	    	<?php
-		
+				
 				$cur2=$collection2->find(array("approval" =>1,"is_private"=>"public"));
 				/**/
 			?>
@@ -110,7 +108,8 @@ if(!isset($_SESSION['admin']))
                                                     <?php
                                                     
                                                     	foreach($cur2 as $doc)
-														{?>
+														{
+                              ?>
                                                             <tr >
                                                             <br>                                                           
                                                             <td><a href="video-page.php?v_link='<?=$doc["v_link"]?>&v_name=<?=$doc["v_name"]?>&v_image=<?=$doc["v_image"]?>"><p style="text-align:center; font-size:18px; font-family: "Courier New", Georgia;"><?=$doc['v_name']?></p></a></td>
@@ -199,7 +198,6 @@ if(!isset($_SESSION['admin']))
   <script src="js/plugins/dataTables/dataTables.tableTools.min.js"></script>
   <script type="text/javascript">
 $(document).ready(function() {
-
     var table  = $('#footable1').DataTable( {
      
       "bDestroy":true,
@@ -216,9 +214,7 @@ $(document).ready(function() {
         ]
     });
   });
-
   </script>
-
   <script>
    $(document).on('click','.v_approve',function(){
     var id = this.id; 
@@ -237,7 +233,6 @@ $(document).ready(function() {
       $(this).prop('disabled',true);    
       $('#'+id).prop('disabled',true);           
   });
-
   $(document).on('click','.v_deny',function(){
     var id = this.id; 
       /*'<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'*/
