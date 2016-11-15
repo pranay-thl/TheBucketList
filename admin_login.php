@@ -12,7 +12,10 @@ if(isset($_SESSION['admin']))
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="css/page.css" rel="stylesheet" />
     <link href="css/super-panel.css" rel="stylesheet" />
-    <script src="js/super-panel.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
     <style>ul li {padding:10px 0;}</style>
 </head>
 <body>
@@ -23,7 +26,7 @@ if(isset($_SESSION['admin']))
           <!--  <a href="demo1.html" class="active">DEMO 1</a> -->
         </span>
     </header>        
-    <div style="width:600px;margin:0 auto;padding:80px;background:white;">
+    <div style="width:600px;margin:0 auto;padding:15px;">
 		<?php
 			$u_name='';
 			$password='';
@@ -43,19 +46,46 @@ if(isset($_SESSION['admin']))
 				}
 			}
 		?>
-        <form action="admin_login.php" method="post">
-			<label>
-				User Name: <input type="text" name="username">
-			</label>
-			</br>
-			<label>
-				Password:&nbsp&nbsp&nbsp <input type="password" name="password">
-			</label>
-		<input type="submit" name="login" value="login">
-		</form>
-		<label>
-				<p><?=$vout?></p>
-		</label>
+		<div id="login-overlay" class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="myModalLabel">ADMIN login to BucketList.com</h4>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-xs-10">
+                      <div class="well">
+                          <form id="loginForm" method="POST" action="admin_login.php" novalidate="novalidate">
+                              <div class="form-group">
+                                  <label for="username" class="control-label">Username</label>
+
+                                  <input type="text" class="form-control" id="username" name="username" value="" required="" title="Please enter you username" >
+                                  <span class="help-block"></span>
+                              </div>
+                              <div class="form-group">
+                                  <label for="password" class="control-label">Password</label>
+                                  <input type="password" class="form-control" id="password" name="password" value="" required="" title="Please enter your password">
+                                  <span class="help-block"></span>
+                              </div>
+                              <?php if($vout!=" "){?>
+                              <div id="loginErrorMsg" class="alert alert-error hide">Wrong username or password</div>
+                              <?php } ?>
+                              <div class="checkbox">
+                                  <label>
+                                      <input type="checkbox" name="remember" id="remember"> Remember login
+                                  </label>
+                                  <p class="help-block">(if this is a private computer)</p>
+                              </div>
+                              <input type="submit" class="btn btn-success btn-block" name="login" value="Login">
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  	</div>
+
    </div>
 	<div id="panel1">
 		</br></br>
@@ -76,4 +106,10 @@ if(isset($_SESSION['admin']))
         </p>
     </div>
 </body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
+  <script src="js/super-panel.js"></script> 
 </html>
+
+
+    

@@ -5,7 +5,7 @@ $m = new MongoClient();
 $db = $m->bucket;
 $collection =$db->videos;
 $username='';
-if(isset($_GET['logout']))
+if(isset($_GET['logout']) && $_GET['logout']=="true")
 {
 	unset($_SESSION['u_name']);
 }	
