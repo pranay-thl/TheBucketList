@@ -90,7 +90,7 @@ body { padding-top: 70px; }
                     <div id="wrapper">
                         <div id="login" class="animate form">
                             <ul class="tab-group">
-                                <li class="tab active"><a href="#tologin" class="to_register">Login in </a></li>
+                                <li class="tab active"><a href="#tologin" class="to_register">Login</a></li>
                                 <li class="tab "><a href="#toregister" class="to_register">Sign up</a></li>
                             </ul>
 							<?php
@@ -158,16 +158,16 @@ body { padding-top: 70px; }
                                 <h1>Log in</h1> 
                                 <p> 
                                     <label for="username" class="uname" data-icon="u" > Your username </label>
-                                    <input id="username" name="username" required="required" type="text" placeholder="myusername or mymail@mail.com"/>
+                                    <input id="username" name="username" required="required" type="text" placeholder="myusername"/>
                                 </p>
                                 <p> 
                                     <label for="password" class="youpasswd" data-icon="p"> Your password </label>
                                     <input id="password" name="password" required="required" type="password" placeholder="eg. X8df!90EO" /> 
                                 </p>
-                                <p class="keeplogin"> 
+                                <!--<p class="keeplogin"> 
 									<input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
 									<label for="loginkeeping">Keep me logged in</label>
-								</p>
+								</p>-->
                                 <p class="login button"> 
                                     <input type="submit" name="login" value="Login" /> 
 								</p>
@@ -183,7 +183,7 @@ body { padding-top: 70px; }
 
                         <div id="register" class="animate form">
                             <ul class="tab-group">
-                                <li class="tab"><a href="#tologin" class="to_register">Login in </a></li>
+                                <li class="tab"><a href="#tologin" class="to_register">Login</a></li>
                                 <li class="tab active"><a href="#toregister" class="to_register">Sign up</a></li>
                             </ul>
                             <form  action="#toregister" autocomplete="on" method="post"> 
