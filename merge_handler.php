@@ -37,16 +37,17 @@ else if($choose==2)
 	//die();
 	//$db2->pull_request->insert($newdata);
 	
-	 $newdata2 = array( 
+	 /*$newdata2 = array( 
                     "u_name" =>$curr5['u_name'],
                     "v_name" =>$curr5['v_name'], 
                     "v_link" =>$curr5['v_link'], 
                     "v_image" =>$curr5['v_image'],
                     "album_name"=>$curr4['album_name'],
                     "is_private"=>$curr5['is_private']
-                    );
-	 $db2->videos->remove(array("v_name"=>$curr4['v_name']));
-	 $db2->videos->insert($newdata2);
+                    );*/
+	 $db2->videos->update(array("v_name"=>$curr5['v_name']),array('$set'=>array('album_name' => $curr4['album_name'])));
+	 //$db2->videos->remove(array("v_name"=>$curr4['v_name']));
+	 //$db2->videos->insert($newdata2);
 
 
 }

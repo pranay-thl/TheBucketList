@@ -29,13 +29,19 @@ if(isset($_POST['Upload'])){
             $v_name=substr($_FILES["fileToUpload"]["name"],0,strlen($_FILES["fileToUpload"]["name"])-4);
             $v_link="data/videos/".$_FILES["fileToUpload"]["name"];
             $v_image="data/videos/default.jpg";
+            $v_approval=0;
+            if($_POST['is_private']=="public")
+            {
+                $v_approval=1;
+            }
             $document = array( 
                     "u_name" =>$user,
                     "v_name" =>$v_name, 
                     "v_link" =>$v_link, 
                     "v_image" =>$v_image,
                     "album_name"=>$_POST['album_select_name'],
-                    "is_private"=>$_POST['is_private']
+                    "is_private"=>$_POST['is_private'],
+                    "approval"=>$v_approval
                     );
                     $collection2->insert($document);
         } else {

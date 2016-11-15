@@ -4,6 +4,10 @@ session_start();
 $m = new MongoClient();
 $db = $m->bucket;
 $collection = $db->user;
+if(isset($_SESSION['u_name']))
+{
+        header("Location: index.php");
+}
 ?>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->

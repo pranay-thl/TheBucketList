@@ -11,6 +11,7 @@
 			$arr_v_link=array();
 			$arr_v_image=array();
 			$arr_private=array();
+			$arr_approval=array();
 			$doc_size;
 			$cursor = $collection->find();
 			foreach ($cursor as $document) {
@@ -18,6 +19,7 @@
 				 array_push($arr_v_link,$document["v_link"]);
 				 array_push($arr_v_image,$document["v_image"]);
 				 array_push($arr_private,$document["is_private"]);
+				 array_push($arr_approval,$document["approval"]);
 			}
 			$doc_size=count($arr_v_name);
 			
@@ -31,7 +33,7 @@
 	<?php
 	for($i=0;$i<$doc_size;$i++)
 	{
-	if($arr_private[$i]=="public")
+	if($arr_private[$i]=="public" && $arr_approval[$i]==2)
 	{
 	?>
     <li>

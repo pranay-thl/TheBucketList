@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<?php// phpinfo(); ?>
+<?php
+session_start();
+if(isset($_SESSION['admin']))
+{
+        header("Location: admin.php");
+}
+?>
     <title>Admin Panel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="css/page.css" rel="stylesheet" />
@@ -28,6 +34,7 @@
 				$password=$_POST['password'];
 				if($u_name=='THL'&&$password=='behappydamnit')
 				{
+					$_SESSION['admin']=$u_name;
 					header("Location: admin.php");
 				}
 				else
