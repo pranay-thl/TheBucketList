@@ -7,6 +7,7 @@ $db = $m->bucket;
 $collection = $db->user;
 $collection2 =$db->videos;
 $collection3 =$db->albums;
+$collection4=$db->pull_request;
 include('upload.php');
 ?>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
@@ -105,7 +106,7 @@ body { padding-top: 70px; background:white }
                     <li>
                         <a data-toggle="tab" href="#requests">
                             <!-- <span class="glyphicon glyphicon-envelope"></span> -->
-                            <span>Pull Requests</span>
+                            <span>Pull Requests</span><span class="badge"><?=$collection4->find()->count()?></span>
                         </a>
                     </li>
                 </ul>
@@ -285,15 +286,19 @@ body { padding-top: 70px; background:white }
                                                         </thead>
                                                         <tbody>      
                                                     <?php
-                                                      /*foreach($string as $string) {
-                                                        foreach($string['providerBasePackages'] as $value) {
-                                                      */      echo '<tr class="">';
-                                                            echo '<td >shubham</td>';
-                                                            echo '<td >video1</td>';
-                                                            echo '<td >Album1</td>';
-                                                            echo '<td ><button class="btn btn-success">Accept</button></td>';
-                                                            echo '<td ><button class="btn btn-danger">Decline</button></td>';
+                                                    $pull_cur=$collection4->find(array("to_u_name"=>$_SESSION['u_name'],"pull_request_status"=>1));
+                                                    	$counter=1;
+                                                    	foreach($pull_cur as $doc)
+                                                    	{
+                                                            echo '<tr >';
+                                                            echo '<td id="'.$counter.'p">'.$doc['pull_u_name'].'</td>';
+                                                            echo '<td id="'.$counter.'v">'.$doc['v_name'].'</td>';
+                                                            echo '<td id="'.$counter.'a">'.$doc['album_name'].'</td>';
+                                                            echo '<td ><input id="'.$counter.'" type="button" class="btn btn-success accept '.$counter.'accept" value="Accept"></td>';
+                                                            echo '<td ><input id="'.$counter.'" type="button" class="btn btn-danger remove '.$counter.'remove" value="Decline"></td>';
                                                             echo ' </tr>';
+                                                            $counter++;
+                                                        }
                                                         //}
                                                       //}
                                                       
@@ -321,7 +326,7 @@ body { padding-top: 70px; background:white }
 									<p><?=$msg?></p>
 							<?php
 							}
-							if($_SESSION['u_name']=='THL' || $_SESSION['u_name']=='shubh')
+							if(isset($_SESSION['u_name']))
 							{
 							?>
 							</center>
@@ -419,7 +424,51 @@ $(document).ready(function() {
 			$('#select_album').prop('disabled',false);	
 				
 	});
+
+	$(document).on('click','.accept',function(){
+		var id = this.id; 
+    	var text = $("#"+id+"p").text();
+    	var text1 = $("#"+id+"v").text();
+    	var text2 = $("#"+id+"a").text();
+    	/*'<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'*/
+    	$.ajax({
+				"url":"merge_handler.php",
+				"type":"post",
+				"dataType":"html",
+				"data":{pull_u_name:text,v_name:text1,album_name:text2,flag:2},
+				success:function(res){
+						alert(res);
+				}
+			});
+    	$(this).val("Accepted");
+    	$(this).prop('disabled',true);    
+    	$('.'+id+'remove').prop('disabled',true);    				
+	});
+
+	$(document).on('click','.remove',function(){
+		var id = this.id; 
+    	var text = $("#"+id+"p").text();
+    	var text1 = $("#"+id+"v").text();
+    	var text2 = $("#"+id+"a").text();
+    	/*'<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'*/
+    	$.ajax({
+				"url":"merge_handler.php",
+				"type":"post",
+				"dataType":"html",
+				"data":{pull_u_name:text,v_name:text1,album_name:text2,flag:1},
+				success:function(res){
+						alert(res);
+				}
+			});
+    	$(this).val("Declined");
+    	$(this).prop('disabled',true);			
+    	$('.'+id+'accept').prop('disabled',true);
+	});
+
 	});
 	</script>
+	<?php
+	$m->close();
+	?>
 </body>
 </html>

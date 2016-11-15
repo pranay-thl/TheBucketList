@@ -181,9 +181,9 @@ var audio = document.getElementById("sound");
 		
 	<!-- 	Append this section to change the images -->
             <a href="video-page.php?v_link=data/videos/Watchtower of Turkey.mp4&v_name=Watchtower of Turkey&v_image=data/videos/Watchtower.of.Turkey.jpg"><img src="data/videos/Watchtower.of.Turkey3.jpg" alt="Watchtower of Turkey"/></a>
-            <a href="http://www.imdb.com/title/tt2582496/"><img src="images/image-slider-2.gif" alt="Me and Earl and The Dying Girl(2015)"/></a>
-            <a href="http://www.imdb.com/title/tt2370248/"><img src="images/image-slider-3.jpeg" alt="Short Term 12 (2013)"/></a>
-            <a href="http://www.imdb.com/title/tt1659337/"><img src="images/image-slider-4.gif" alt="The Perks of Being a Wallflower(2012)"/></a>
+             <a href="video-page.php?v_link=data/videos/meandearl.mp4&v_name=Me and Earl and the dying girl&v_image=data/videos/default.jpg"><img src="images/image-slider-2.gif" alt="Me and Earl and The Dying Girl(2015)"/></a>
+           <a href="video-page.php?v_link=data/videos/shortterm12.mp4&v_name=Short Term 12&v_image=data/videos/default.jpg"><img src="images/image-slider-3.jpeg" alt="Short Term 12 (2013)"/></a>
+                       <a href="video-page.php?v_link=data/videos/perks.mp4&v_name=The Perks of being a Wallflower&v_image=data/videos/default.jpg"><img src="images/image-slider-4.gif" alt="The Perks of Being a Wallflower(2012)"/></a>
        
 	   </div>
         <div id="htmlcaption" style="display: none;">

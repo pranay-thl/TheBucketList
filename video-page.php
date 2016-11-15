@@ -1,4 +1,19 @@
 <!DOCTYPE html>
+<?php
+$m = new MongoClient();
+$db = $m->bucket;
+$collection =$db->videos;
+$collection2 =$db->pull_request;
+//echo $_GET['v_name'];
+$cur=$collection->findOne(array("v_name"=>$_GET['v_name']));
+$cur2=$db->albums->find();
+session_start();
+$username='';	
+if(isset($_SESSION['u_name']))
+{
+  $username=$_SESSION['u_name'];
+}
+?>
 <html>
 <head>
     <title><?=$_GET['v_name']?></title>
@@ -22,13 +37,53 @@
 		<script src="js/videojs-ie8.min.js"></script>
     <div style="width:800px;margin:0 auto;padding:20px;background:white;">
     	<blockquote class="blockquote blockquote-reverse" style="padding: 5%;text-align:left;">
-		  	<p class="mb-0" style="margin: 0 0 2px;font-size:28px;"><i><?=$_GET['v_name']?></i>
+		  	<p id="vid" class="mb-0" style="margin: 0 0 2px;font-size:20px;font-family: 'memphis_lt_stdlight';"><i><?=$_GET['v_name']?></i></p>
 		  		<span id="request_status">
+		  		<?php
+		  		$cur3=$collection2->findOne(array("pull_u_name"=>$username,"v_name"=>$cur['v_name']));
+		  		//var_dump($cur3);
+				//echo $username." ".$cur['v_name'];
+		  		$flag=0;
+		  		if($cur3)
+		  		{
+		  			if($cur3['pull_request_status']==0)
+		  				$flag=1;
+		  			else if($cur3['pull_request_status']==1)
+		  				$flag=2;
+		  		}
+		  		if($cur['album_name']=="null" && $cur['u_name']==$username)
+		  		{
+
+		  			if($flag!=2)
+		  			{
+		  		?>
 		  		<button style="float:right;" class="btn btn-success" id="create_request">Create Pull Request</button>
+		  		<?php
+		  		}
+		  		else
+		  		{
+		  		?>
+		  		<span class="label label-warning" style="float:right;font-size: 75%;">Pending Request</span>
+		  		<?php
+		  		}
+		  		}
+		  		else if($cur['album_name']!='null')
+		  		{
+		  		?>
+		  		<p class="mb-0" style="float:right;font-size:18px;font-family: 'Courier New', Georgia;"><i><?=$cur['album_name']?></i></p>
+		  		<?php
+		  		}
+		  		else
+		  		{
+		  		?>
+		  		<p class="mb-0" style="float:right;font-size:18px;font-family: 'Courier New', Georgia;"><i>Not in an album</i></p>
+		  		<?php
+		 	 	}
+		 	 	?>
 		  		<!-- <span class="label label-warning" style="float:right;font-size: 75%;">Pending Request</span> -->
 		  		</span>
-		  	</p>
-  		 	<footer style="margin-left:30%;" class="blockquote-footer">By<cite title="Source Title">Shubham Sharma</cite></footer>
+		  	
+  		 	<footer style="margin-left:30%;" class="blockquote-footer">By<cite title="Source Title"><?=$cur['u_name']?></cite></footer>
 		</blockquote>
 		<hr>
 
@@ -37,30 +92,39 @@
 			 <div class="row">
 			 	<div class="container">
 			 		<div class="col-lg-12">
+			 		<form id="pull_form" action="">
 			 			<div class="col-lg-3-offset"></div>
 			 			<div class="col-lg-3">
 			 				  <div class="form-group">
       							<label for="sel1">Album List (<i>select one</i>):</label>
-      								<select class="form-control" id="">
-								        <option>1</option>
-								        <option>2</option>
-								        <option>3</option>
-								        <option>4</option>
+      								<select class="form-control" id="select_album">
+      									<?php
+      									foreach($cur2 as $doc)
+      									{
+      									if($doc['u_name']!=$username)
+      									{
+      									?>
+								        <option><?=$doc['album_name']?></option>
+								        <?php
+								    	}
+								    	}
+								    	?>
       								</select>
       						  </div> 		
 			 			</div>
 
 			 			<div class="col-lg-3">
 			 				<div class="form-group">
-				 				<label for="msg">Any Msg:</label>
-	  							<input type="text" class="form-control" id="msg">
+				 				<label for="msg">Msg for pull request:</label>
+	  							<input type="text" class="form-control" id="msg" required>
 			 				</div>
 			 			</div>
 			 			
 			 			<div class="col-lg-3" style="margin-top: 4px;padding-left:50px;">
 			 				<br>
-			 				<button style="background-color: rgba(0, 0, 0, 0.69);" class="btn btn-success" id="submit_request">CREATE</button>			
+			 				<button type="submit" style="background-color: rgba(0, 0, 0, 0.69);" class="btn btn-success" id="submit_request">CREATE</button>			
 			 			</div>
+			 			</form>
 			 		</div>
 			 	</div>
 			 </div>
@@ -122,11 +186,32 @@
 	$(document).on('click','#create_request',function(){
 		$('#request').toggle(500);
 	});
-	$(document).on('click','#submit_request',function(){
-		$('#request_status').html('<span class="label label-warning" style="float:right;font-size: 75%;">Pending Request</span>');
-		$('#request').hide();
+	 $('#pull_form').submit(function(event){
+		if($("#msg").val()!='')
+		{
+			var ms=$("#msg").val();
+			var al=$("#select_album").val();
+			var vi='<?=$cur["v_name"]?>';
+			var us='<?=$username?>';
+			$.ajax({
+				"url":"pull_request_handler.php",
+				"type":"post",
+				"dataType":"html",
+				"data":{u_name:us,v_name:vi,album_name:al,pull_msg:ms},
+				success:function(res){
+						//alert(res);
+				}
+			});
+			$('#request_status').html('<span class="label label-warning" style="float:right;font-size: 75%;">Pending Request</span>');
+			$('#request').hide();
+
+		}
+		event.preventDefault();
+
 	});
 	
-
+<?php
+$m->close();
+?>
 </script>
 </html>

@@ -95,7 +95,23 @@ isNaN(b)?!0:a>b};this._resetAlt=function(a,b){var d=a.getAttribute("alt"),c=d&&0
       
 
         
+        <div class="slide" data-type="image">
+              <div class="margin-wrapper">
+                <a
+                  
+                    data-title=""
+                    data-description="Anish"
+                    data-lightbox-theme=""
+                    href="images/anish.jpg"
+                    
 
+                  class="image-slide-anchor content-fit"
+                >
+                  <noscript><img src="images/anish.jpg"  alt="Anish"  /></noscript><img class="thumb-image" alt="Anish" data-src="images/anish.jpg" data-image="images/anish.jpg" data-image-dimensions="640x640" data-image-focal-point="0.5,0.5" data-load="false" data-image-id="580245e68748e33c4c46dcb6" data-type="image" />
+                </a>
+                
+              </div>
+            </div>
         
 
         
@@ -182,7 +198,41 @@ isNaN(b)?!0:a>b};this._resetAlt=function(a,b){var d=a.getAttribute("alt"),c=d&&0
 
           
 
-          
+          <div class="slide" data-type="image">
+              <div class="margin-wrapper">
+                <a
+                  
+                    data-title=""
+                    data-description="Lokesh"
+                    data-lightbox-theme=""
+                    href="images/lokesh.jpg"
+                    
+
+                  class="image-slide-anchor content-fit"
+                >
+                  <noscript><img src="images/lokesh.jpg"  alt="Lokesh"  /></noscript><img class="thumb-image" alt="Lokesh" data-src="images/lokesh.jpg" data-image="images/lokesh.jpg" data-image-dimensions="640x640" data-image-focal-point="0.5,0.5" data-load="false" data-image-id="580245e68748e33c4c46dcb6" data-type="image" />
+                </a>
+                
+              </div>
+            </div>
+
+            <div class="slide" data-type="image">
+              <div class="margin-wrapper">
+                <a
+                  
+                    data-title=""
+                    data-description="Shailesh"
+                    data-lightbox-theme=""
+                    href="images/shailesh.jpg"
+                    
+
+                  class="image-slide-anchor content-fit"
+                >
+                  <noscript><img src="images/shailesh.jpg"  alt="Shailesh"  /></noscript><img class="thumb-image" alt="Shailesh" data-src="images/shailesh.jpg" data-image="images/shailesh.jpg" data-image-dimensions="640x640" data-image-focal-point="0.5,0.5" data-load="false" data-image-id="580245e68748e33c4c46dcb6" data-type="image" />
+                </a>
+                
+              </div>
+            </div>
         
 
       
