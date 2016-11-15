@@ -196,7 +196,6 @@ var audio = document.getElementById("sound");
 	<!--<div class="div1"><a href="http://172.22.31.147:81/DC"><h2 align="center">Shared-TheHurtLocker</h2></a>
 	<div class="div1"><a href="http://172.22.30.182:81/Shared"><h2 align="center">Shared-Linus</h2></a>-->
     <div class="div2">
-       
     </div>
 		
    </div>
