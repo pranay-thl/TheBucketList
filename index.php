@@ -215,7 +215,7 @@ var audio = document.getElementById("sound");
         </div>
         <br /><br />
         <p style="text-align:center;font-size:smaller;font-style:italic;">
-            It was the best of times, It was the worst of times, It was life.<br />
+            <a href="birds.php">It was the best of times, It was the worst of times, It was life.</a><br />
         </p>
     </div>
 	<!--
