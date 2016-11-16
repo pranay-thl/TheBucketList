@@ -15,7 +15,20 @@ if(!isset($_SESSION['admin']))
     header("Location: admin_login.php");
 }
 ?>
-
+<?php
+                        if(isset($_POST['delete']))
+                        {
+                          
+                          $collection2->remove(array("v_name"=>$_POST['del_name']));
+                          $db->pull_request->remove(array("v_name"=>$_POST['del_name']));
+                          unlink($_POST['del_link']);
+                          ?>
+                          <script>
+                            alert("Video Deleted :"+"<?=$_POST['del_name']?>");
+                          </script>
+                          <?php
+                        }
+                        ?>
 <head>	
     <title>Admin Panel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -133,14 +146,22 @@ if(!isset($_SESSION['admin']))
 		</div>
 
 		<div id="videos" class="tab-pane">
+      
 			<?php
-			$cur2=$collection2->find();
-			foreach($cur2 as $doc)
+			$cur3=$collection2->find();
+			foreach($cur3 as $doc)
 			{
 			?>
-			<label>
+			<div class="col-lg-8">
 				<a href="video-page.php?v_link=<?=$doc['v_link']?>&v_name=<?=$doc['v_name']?>&v_image=<?=$doc['v_image']?>"><p style="text-align:center; font-size:18px; font-family: 'Courier New', Georgia;"><?=$doc['v_name']?></p></a>
-			</label>
+			</div>
+      <div class="col-lg-4">
+                  <form method="POST" action="admin.php">
+                  <input type="hidden" name="del_link" value="<?=$doc['v_link']?>"></input>
+                  <input type="hidden" name="del_name" value="<?=$doc['v_name']?>"></input>
+                  <input type="submit" value="Delete" name="delete"></input>
+                  </form>
+                </div>
       <br>
 			<?php
 			}
