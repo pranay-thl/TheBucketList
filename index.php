@@ -148,9 +148,9 @@ var audio = document.getElementById("sound");
    <!-- <div class="div1"><h2>The Bucket List</h2></br></br>-->
    
    <div class="div2" style="margin-top:5px;margin-bottom:20px;width: 600px;">
-	<div class="container">
+	<div class="container" style="width:800px;">
 	  <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6" style="width: 75%;">
 			<div class="col-lg-2" style="width: 6.76666667%;padding-right: 0px; padding-left: 0px;">
 				<a  class="btn btn-primary" style="float:left;"><i class="fa fa-search fa-lg"></i></a>
 			</div>
