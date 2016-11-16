@@ -44,9 +44,6 @@ if(!isset($_SESSION['u_name']))
 table {
   border-spacing: 20px 10px;
 }
-
-
-
 body { padding-bottom: 0px;
      }
 body { padding-top: 70px; background:white }  
@@ -271,7 +268,6 @@ body { padding-top: 70px; background:white }
                           $collection2->remove(array("v_name"=>$_POST['del_name']));
                           $collection4->remove(array("v_name"=>$_POST['del_name']));
                           unlink($_POST['del_link']);
-
                         }
                         ?>
                         <div id="settings" class="tab-pane">
@@ -537,7 +533,6 @@ body { padding-top: 70px; background:white }
   
   <script>
 $(document).ready(function() {
-
     var table  = $('#footable1').DataTable( {
      
       "bDestroy":true,
@@ -554,7 +549,6 @@ $(document).ready(function() {
         ]
     });
   });
-
 </script>
   <script>
   $(document).ready(function(){ 
@@ -567,7 +561,6 @@ $(document).ready(function() {
       $('#select_album').prop('disabled',false);  
         
   });
-
   $(document).on('click','.accept',function(){
     var id = this.id; 
       var text = $("#"+id+"p").text();
@@ -587,7 +580,6 @@ $(document).ready(function() {
       $(this).prop('disabled',true);    
       $('.'+id+'remove').prop('disabled',true);           
   });
-
   $(document).on('click','.remove',function(){
     var id = this.id; 
       var text = $("#"+id+"p").text();
@@ -607,7 +599,6 @@ $(document).ready(function() {
       $(this).prop('disabled',true);      
       $('.'+id+'accept').prop('disabled',true);
   });
-
   });
   </script>
  <!--  <script type="text/javascript">

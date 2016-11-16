@@ -14,7 +14,6 @@ if(!isset($_SESSION['admin']))
 {
     header("Location: admin_login.php");
 }
-
 ?>
 
 <head>	
@@ -199,7 +198,6 @@ if(!isset($_SESSION['admin']))
   <script src="js/plugins/dataTables/dataTables.tableTools.min.js"></script>
   <script type="text/javascript">
 $(document).ready(function() {
-
     var table  = $('#footable1').DataTable( {
      
       "bDestroy":true,
@@ -216,7 +214,6 @@ $(document).ready(function() {
         ]
     });
   });
-
   </script>
   <script>
    $(document).on('click','.v_approve',function(){
@@ -236,7 +233,6 @@ $(document).ready(function() {
       $(this).prop('disabled',true);    
       $('#'+id).prop('disabled',true);           
   });
-
   $(document).on('click','.v_deny',function(){
     var id = this.id; 
       /*'<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'*/

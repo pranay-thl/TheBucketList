@@ -5,6 +5,7 @@ $m = new MongoClient();
 $db = $m->bucket;
 $collection =$db->videos;
 $username='';
+
 if(isset($_GET['logout'])&&$_GET['logout']=="true")
 {
 	unset($_SESSION['u_name']);
@@ -54,12 +55,10 @@ if(isset($_SESSION['u_name']))
 				border-radius: 6px;
 				background-color: #fff;
 			}
-
 			#custom-search-input input{
 				border: 0;
 				box-shadow: none;
 			}
-
 			#custom-search-input button{
 				margin: 2px 0 0 0;
 				background: none;
@@ -69,13 +68,11 @@ if(isset($_SESSION['u_name']))
 				padding: 0 8px 0 10px;
 				border-left: solid 1px #ccc;
 			}
-
 			#custom-search-input button:hover{
 				border: 0;
 				box-shadow: none;
 				border-left: solid 1px #ccc;
 			}
-
 			#custom-search-input .glyphicon-search{
 				font-size: 23px;
 			}
@@ -257,7 +254,6 @@ var audio = document.getElementById("sound");
                       <div class="direct-chat-info clearfix">
                         <span class="direct-chat-name pull-left">Osahan</span>
                       </div>
-
                       <img alt="message user image" src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg" class="direct-chat-img">
                       <div class="direct-chat-text">
                         Hey bro, how’s everything going ?
@@ -303,9 +299,7 @@ var audio = document.getElementById("sound");
 					
 					
                     
-
                     
-
                   </div>
 			
 			
@@ -328,7 +322,6 @@ var audio = document.getElementById("sound");
 			</div>
 	  </div>
 	  
-
 <script>	  
 	  $(document).ready(function(){
 		$("#addClass").click(function () {
@@ -356,11 +349,9 @@ function show(){
     	  $('.browse').html(res);
      	});
   }
-
   $('.browse').mouseleave(function(){
     	$('.browse').css('display','none');
   	});
-
   $('#searchForm').submit(function(event){
     	return false;
         event.preventDefault();

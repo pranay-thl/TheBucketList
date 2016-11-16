@@ -72,6 +72,7 @@ if(isset($_SESSION['admin']))
                               <div id="loginErrorMsg" class="alert alert-error hide">Wrong username or password</div>
                               <?php } ?>
                               <div class="checkbox">
+
                               </div>
                               <input type="submit" class="btn btn-success btn-block" name="login" value="Login">
                           </form>
@@ -80,8 +81,8 @@ if(isset($_SESSION['admin']))
               </div>
           </div>
       </div>
-    </div>
 
+    </div>
    </div>
   <div id="panel1">
     </br></br>
@@ -100,6 +101,7 @@ if(isset($_SESSION['admin']))
     </div>
 </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
   <script src="js/super-panel.js"></script> 
 </html>
